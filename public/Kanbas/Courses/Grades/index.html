@@ -1,0 +1,186 @@
+<!--update screen.html for grade-->
+<html>
+
+<head>
+    <title>Grades</title>
+</head>
+
+<body>
+    <select id="select-grade">
+        <option value="GRADEBOOK">Gradebook</option>
+        <option value="CHANGE">Change Gradebook View</option>
+        <option value="TRADITIONAL">Traditional Gradebook</option>
+        <option value="INDIVIDUAL">Individual Gradebook</option>
+    </select>
+    <button type="button">Import</button>
+    <select id="select-export">
+        <option value="EXPORT">Export</option>
+        <option value="EXPORT-CURRENT-GRADEBOOK">Export Current Gradebook</option>
+        <option value="EXPORT-ENTIRE-GRADEBOOK">Export Entire Gradebook</option>
+    </select>
+    <button type="button">Configure</button>
+
+    <h3>Student Names</h3>
+    <input id="text-fields-student" placeholder="Search Students" />
+    <select>
+        <option>Alice Wonderland</option>
+        <option>Charlie Brown</option>
+        <option>Bob the Builder</option>
+        <option>Spongebob Squarepants</option>
+    </select>
+    <h3>Assignment Names</h3>
+    <input id="text-fields-assignment" placeholder="Search Assignments" />
+    <select>
+        <option>A1</option>
+        <option>A2</option>
+        <option>A3</option>
+        <option>A4</option>
+        <option>Q1</option>
+        <option>Q2</option>
+        <option>Q3</option>
+    </select>
+    <br />
+    <br />
+    <button type="button">Apply Filters</button>
+    <br />
+
+    <table border="2" width="100%">
+        <thead>
+            <tr>
+                <th>
+                    <h3>Student Name</h3>
+                </th>
+                <th>
+                    <h3>A1 SETUP <br>Out of 100</h3>
+                </th>
+                <th>
+                    <h3>A2 HTML <br>Out of 100</h3>
+                </th>
+                <th>
+                    <h3>A3 CSS <br>Out of 100</h3>
+                </th>
+                <th>
+                    <h3>A4 BOOTSTRAP <br>Out of 100</h3>
+                </th>
+                <th>
+                    <h3>A5 JAVASCRIPT <br>Out of 100</h3>
+                </th>
+                <th>
+                    <h3>A6 REACT <br>Out of 100</h3>
+                </th>
+                <th>
+                    <h3>A7 REDUX <br>Out of 100</h3>
+                </th>
+                <th>
+                    <h3>A8 NODE <br>Out of 100</h3>
+                </th>
+                <th>
+                    <h3>A9 MONGO <br>Out of 100</h3>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Princess Jasmine</td>
+                <td>98</td>
+                <td>89</td>
+                <td>87</td>
+                <td>90</td>
+                <td>89</td>
+                <td>94</td>
+                <td>88</td>
+                <td>87</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>Spongebob Squarepants</td>
+                <td>95</td>
+                <td>99</td>
+                <td>89</td>
+                <td>88</td>
+                <td>93</td>
+                <td>91</td>
+                <td><input type="text" id="text-fields-assignment-score" value="85" /></td>
+                <td>90</td>
+                <td>89</td>
+            </tr>
+            <tr>
+                <td>Squidward Tenticals</td>
+                <td>92</td>
+                <td>97</td>
+                <td><input type="text" id="text-fields-assignment-score" value="99" /></td>
+                <td>99</td>
+                <td>95</td>
+                <td>82</td>
+                <td>84</td>
+                <td>93</td>
+                <td>85</td>
+
+            </tr>
+            <tr>
+                <td>Patrick Star</td>
+                <td>85</td>
+                <td>92</td>
+                <td>88</td>
+                <td>91</td>
+                <td><input type="text" id="text-fields-assignment-score" value="87" /></td>
+                <td>95</td>
+                <td>86</td>
+                <td>89</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>Sandy Cheeks</td>
+                <td>92</td>
+                <td>88</td>
+                <td>95</td>
+                <td><input type="text" id="text-fields-assignment-score" value="89" /></td>
+                <td>90</td>
+                <td>87</td>
+                <td>88</td>
+                <td>94</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>Mr. Krabs</td>
+                <td>98</td>
+                <td>90</td>
+                <td>92</td>
+                <td>89</td>
+                <td>94</td>
+                <td>88</td>
+                <td><input type="text" id="text-fields-assignment-score" value="86" /></td>
+                <td>87</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>Pearl Krabs</td>
+                <td>92</td>
+                <td>88</td>
+                <td>95</td>
+                <td>90</td>
+                <td>90</td>
+                <td>87</td>
+                <td>88</td>
+                <td><input type="text" id="text-fields-assignment-score" value="93" /></td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>Mrs. Puff</td>
+                <td><input type="text" id="text-fields-assignment-score" value="87" /></td>
+                <td>90</td>
+                <td>92</td>
+                <td>89</td>
+                <td>94</td>
+                <td>88</td>
+                <td>96</td>
+                <td>87</td>
+                <td>100</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</body>
+
+</html>
