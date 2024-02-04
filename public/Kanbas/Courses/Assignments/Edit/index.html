@@ -17,7 +17,7 @@
 
       </select>
       <hr>
-
+      <form action="../../Assignments/screen.html">
       <h3>Assignment Name</h3>
       <input type="text" id="text-fields-assignment-name" value="A1 - ENV + HTML" />
       <br />
@@ -28,7 +28,7 @@
       <label>
             Points</label>
       <br />
-      <input type="text" id="text-fields-points" value="100">
+      <input type="text" id="text-fields-points" value="100" min="0" max="100">
       <br />
       <br />
       <label>
@@ -36,6 +36,10 @@
       <br />
       <select id="select-assignment-group">
             <option value="ASSIGNMENT-GROUP">ASSIGNMENTS</option>
+            <option value="ASSIGNMENT-GROUP">QUIZZES</option>
+            <option value="ASSIGNMENT-GROUP">EXAMS</option>
+            <option value="ASSIGNMENT-GROUP">PROJECTS</option>
+
       </select>
       <br />
       <br />
@@ -57,19 +61,19 @@
       <br />
       <label>Online Entry Options</label>
       <br />
-      <input type="checkbox" value="TEXT-ENTRY" name="check-online-entry" id="chkbox-text-entry" />
+      <input type="checkbox" value="TEXT-ENTRY" name="wd-submission-type" id="chkbox-text-entry" />
       <label for="chkbox-text-entry">Text Entry</label> <br />
 
-      <input type="checkbox" value="WEBSITE-URL" name="check-online-entry" id="chkbox-website-url" />
+      <input type="checkbox" value="WEBSITE-URL" name="wd-submission-type" id="chkbox-website-url" />
       <label for="chkbox-website-url">Website URL</label> <br />
 
-      <input type="checkbox" value="MEDIA-RECORDINGS" name="check-online-entry" id="chkbox-media-recordings" />
+      <input type="checkbox" value="MEDIA-RECORDINGS" name="wd-submission-type" id="chkbox-media-recordings" />
       <label for="chkbox-media-recordings">Media Recordings</label> <br />
 
-      <input type="checkbox" value="STUDENT-ANNOTATIOn" name="check-online-entry" id="chkbox-student-annotation" />
+      <input type="checkbox" value="STUDENT-ANNOTATIOn" name="wd-submission-type" id="chkbox-student-annotation" />
       <label for="chkbox-student-annotation">Student Annotation</label> <br />
 
-      <input type="checkbox" value="FILE-UPLOADS" name="check-online-entry" id="chkbox-file-uploads" />
+      <input type="checkbox" value="FILE-UPLOADS" name="wd-submission-type" id="chkbox-file-uploads" />
       <label for="chkbox-file-uploads">File Uploads</label><br />
 
       <br />
@@ -94,8 +98,9 @@
       <input type="date" id="text-fields-until" value="2021-01-01" /><br />
 
       <br />
-      <button type="button">Cancel</button>
-      <button type="button">Save</button>
+      <button>Cancel</button>
+      <button>Save</button>
+</form>
 </body>
 
 </html>

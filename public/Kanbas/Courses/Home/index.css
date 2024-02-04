@@ -1,0 +1,113 @@
+.wd-modules,
+.wd-modules * {
+  border-radius: 0%;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  font-weight: 540;
+
+}
+
+.wd-modules {
+  margin: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+}
+
+.wd-modules > li {
+  background-color: rgb(243, 243, 243);
+  border: 1px solid rgb(213, 212, 212) !important;
+  border-left: none !important;
+}
+
+.wd-modules > li > div {
+  padding: 10px;
+  border-left: 1px solid rgb(213, 212, 212) !important;
+}
+
+.wd-modules > li > ul > li {
+  padding: 10px;
+  border-top: 1px solid rgb(213, 212, 212) !important;
+  border-left: 4px solid rgb(0, 165, 0);
+}
+
+.wd-modules > li {
+  margin-bottom: 20px;
+}
+
+.wd-modules a {
+  color: rgb(230, 0, 0);
+  text-decoration: none;
+}
+
+.wd-modules .d-flex {
+  padding-bottom: 1%;
+  margin-bottom: 2.5%;
+  border-bottom: 1px solid rgb(213, 212, 212);
+}
+
+.wd-modules button, .wd-modules select {
+  margin-right: 3px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 35px;
+  border: 1px solid rgb(213, 212, 212);
+  border-radius: 3px;
+  background-color: rgb(243, 243, 243);
+  
+}
+
+.wd-modules .module-button {
+  background-color: rgb(230, 0, 0);
+  border: 1px solid rgb(230, 0, 0);
+
+  color: white;
+}
+
+
+.wd-modules .d-flex {
+  justify-content: flex-end;
+}
+
+.wd-modules button {
+  white-space: nowrap;
+
+}
+
+.navbar .wd-navbar-title {
+  margin: 0 auto; text-align: center; font-size: 12pt
+}
+
+.container-fluid .wd-down-arrow {
+color: white;
+}
+
+.d-flex .wd-font-size-13 {
+  font-size: 13pt;
+}
+
+.list-group-item .wd-green-chain {
+  color:rgb(0, 165, 0);
+}
+
+.d-flex .wd-padding-right-3 {
+  padding-right: 3px;
+}
+
+.d-flex .wd-padding-right-5 {
+  padding-right: 5px;
+}
+
+
+.d-flex .wd-padding-right-4 {
+  padding-right: 4px;
+}
+
+.d-flex .wd-white {
+  color: white;
+}
+.fa-calendar.wd-color-gray, .fa-pencil-square.wd-color-gray {
+  color: gray;
+}

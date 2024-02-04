@@ -2,27 +2,71 @@
 
 <head>
     <title>Naviation</title>
+    <link rel="stylesheet" href="../../Kanbas/styles.css" />
+    <link rel="stylesheet" href="../..//Kanbas/Navigation/index.css" />
+    <link rel="stylesheet" href="../../libs/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../libs/font-awesome/css/font-awesome.min.css" />
+
 </head>
 
 <body>
-    <ul>
-        <li><a href="../../Account/Navigation/index.html">
+    <div class="d-none d-md-block">
+    <ul class="wd-kanbas-navigation">
+        <li><a href="http://northeastern.edu"><img src='../../images/northeastern-icon.png' style='width: 60px;'></a></li>
+        <li><a href="../Account/Profile/screen.html">
+            <i class='fa fa-user-circle wd-user-circle'></i>
                 Account</a></li>
-        <li>
-            <a href="/Kanbas/Dashboard/screen.html">Dashboard</a>
+        <li class="wd-active">
+            <a href="../Dashboard/screen.html">
+                <i class="fa fa-tachometer"></i> Dashboard</a>
         </li>
         <li>
-            <a href="../Home/screen.html">Courses</a>
+            <a href="../Courses/Home/screen.html">
+                <i class="fa fa-book"></i>Courses</a>
         </li>
-        <li>
-            <a href="/Kanbas/Calendar/index.html">Calendar</a>
-        </li>
-        <li><a href="/Kanbas/Inbox/index.html">Inbox</a></li>
-        <li><a href="/Kanbas/History/index.html">History</a></li>
-        <li><a href="/Kanbas/Studio/index.html">Studio</a></li>
-        <li><a href="/Kanbas/Commons/index.html">Commons</a></li>
-        <li><a href="/Kanbas/Help/index.html">Help</a></li>
+        <li><a href="#"><i class="fa fa-calendar"></i> Calendar</a></li>
+        <li><a href="/Kanbas/Inbox/index.html">
+            <i class="fa fa-envelope"></i> Inbox</a></li>
+        <li><a href="/Kanbas/History/index.html">
+            <i class='fa fa-clock-o wd-clock'></i>
+            History</a></li>
+        <li><a href="/Kanbas/Studio/index.html"><i class="fa fa-desktop"></i>Studio</a></li>
+        <li><a href="/Kanbas/Commons/index.html"><i class="fa fa-share-square"></i>Commons</a></li>
+        <li><a href="/Kanbas/Help/index.html">
+            <i class='fa fa-question-circle wd-question'></i>
+             <br>Help</a></li>
     </ul>
+</div>
+
+<div class="d-block d-md-none">
+    <div class="icon-x">
+        <a href="../Courses/Home/screen.html"><i class="fa fa-times wd-color-gray wd-font-size-20" id="cancel-icon"></i></a>
+        </div>
+        <ul class="wd-kanbas-navigation-sm">
+            <li><a href="../Account/Profile/screen.html">
+                <i class='fa fa-user-circle wd-user-circle-sm'></i>
+                    Account</a></li>
+            <li class="wd-active">
+                <a href="../Dashboard/screen.html">
+                    <i class="fa fa-tachometer wd-tachometer-sm"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="../Courses/Home/screen.html">
+                    <i class="fa fa-book wd-book-sm"></i>Courses</a>
+            </li>
+            <li><a href="#"><i class="fa fa-calendar wd-calendar-sm"></i> Calendar</a></li>
+            <li><a href="/Kanbas/Inbox/index.html">
+                <i class="fa fa-envelope wd-envelope-sm"></i> Inbox</a></li>
+            <li><a href="/Kanbas/History/index.html">
+                <i class='fa fa-clock-o wd-clock-sm'></i>
+                History</a></li>
+            <li><a href="/Kanbas/Studio/index.html"><i class="fa fa-desktop wd-desktop-sm"></i>Studio</a></li>
+            <li><a href="/Kanbas/Commons/index.html"><i class="fa fa-share-square wd-share-sm"></i>Commons</a></li>
+            <li><a href="/Kanbas/Help/index.html">
+                <i class='fa fa-question-circle wd-question-sm'></i>
+                 Help</a></li>
+        </ul>
+    </div>
 </body>
 
 </html>

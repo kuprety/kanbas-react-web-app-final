@@ -2,15 +2,22 @@
 
 <head>
     <title>Navigation</title>
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="../../Courses/Navigation/index.css" />
+    <link rel="stylesheet" href="../../../libs/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../libs/font-awesome/css/font-awesome.min.css" />
+
+
 </head>
 
 <body>
-    <ul>
+<div class="d-none d-md-block">
+    <ul class="wd-navigation">
         <li>
             <a href="../Home/screen.html">
                 Home</a>
         </li>
-        <li><a href="../Modules/screen.html">
+        <li class="wd-active"><a href="../Modules/screen.html">
                 Modules</a></li>
         <li><a href="../Piazza/index.html">
                 Piazza</a></li>
@@ -42,6 +49,79 @@
                 Settings</a></li>
 
     </ul>
+</div>
+
+<div class="d-block d-md-none">
+        <nav class="navbar navbar-dark bg-dark">
+                <div class="container-fluid">
+                  <a href="../../Navigation/index.html">
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                </a>
+                  <a class="navbar-brand">CS4550.12631.202410 <br>Modules</a>
+             
+                  <a href="../Home/screen.html"><i class="fa fa-times wd-white" id="cancel-icon"></i></a>
+                </div>
+    
+              </nav>
+        <ul class="wd-navigation-sm">
+            <li>
+                <a href="../Home/screen.html">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                    Home</a>
+            </li>
+            <li class="wd-active"><a href="../Modules/screen.html">
+                <i class="fa fa-desktop" aria-hidden="true"></i>
+                    Modules</a></li>
+            <li><a href="../Piazza/index.html">
+                <i class="fa fa-plug" aria-hidden="true"></i>
+                    Piazza</a></li>
+            <li><a href="../Assignments/screen.html">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    Assignments</a></li>
+            <li><a href="../Quizzes/screen.html">
+                <i class="fa fa-rocket" aria-hidden="true"></i>
+                    Quizzes</a></li>
+            <li><a href="../Grades/screen.html">
+                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                    Grades</a></li>
+            <li><a href="../People/screen.html">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                    People</a></li>
+            <li><a href="../Discussions/screen.html">
+                <i class="fa fa-comments-o" aria-hidden="true"></i>
+                Discussions</a></li>
+            <li><a href="../Announcements/screen.html">
+                <span class="icon-text">
+                        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                        Announcements
+                    </span>
+            </a></li>
+            <li><a href="../Pages/screen.html">
+                <i class="fa fa-file-o" aria-hidden="true"></i>
+                    Pages</a></li>
+            <li><a href="../Files/screen.html">
+                <i class="fa fa-folder-o" aria-hidden="true"></i>
+                    Files</a></li>
+            <li><a href="../Rubrics/screen.html">
+                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                    Rubrics</a></li>
+            <li><a href="../Outcomes/screen.html">
+                <i class="fa fa-bullseye" aria-hidden="true"></i>
+                    Outcomes</a></li>
+            <li><a href="../Collaborations/screen.html">
+                <i class="fa fa-circle-thin" aria-hidden="true"></i>
+                    Collaborations</a></li>
+            <li><a href="../Syllabus/screen.html">
+                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                    Syllabus</a></li>
+            <li><a href="../Settings/screen.html">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                    Settings</a></li>
+    
+        </ul>
+    </div>
 
 </body>
 
