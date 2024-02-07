@@ -111,3 +111,23 @@ color: white;
 .fa-calendar.wd-color-gray, .fa-pencil-square.wd-color-gray {
   color: gray;
 }
+
+.red {
+  color: rgb(230, 0, 0);
+}
+
+.red .navbar-toggler-icon {
+  color: red;
+}
+
+
+
+.wd-student-view-button {
+  border: 1pt lightgray solid;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+
+
+}
