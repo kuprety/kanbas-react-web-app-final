@@ -22,7 +22,7 @@ function ModuleList() {
           <button className="module-button" type="button">View Progress</button>
         </div>
         <div>
-          <select className="module-select" id="select-publishing">
+          <select className="module-select">
             <option value="PUBLISH">Publish All</option>
             <option value="UNPUBLISH">Unpublish All</option>
           </select>

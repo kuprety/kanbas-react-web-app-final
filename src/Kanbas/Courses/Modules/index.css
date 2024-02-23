@@ -1,4 +1,4 @@
-.d-flex .module-button, .module-select, #select-publishing {
+.d-flex .module-button{
     margin-right: 3px;
     padding: 5px;
     padding-left: 10px;
@@ -8,6 +8,20 @@
     border-radius: 3px;
     background-color: rgb(243, 243, 243);
     margin-bottom: 30px;
+  }
+
+   .module-select {
+    margin-top: 50px;
+    margin-right: 3px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 35px;
+    border: 1px solid rgb(213, 212, 212);
+    border-radius: 3px;
+    background-color: rgb(243, 243, 243);
+    margin-bottom: 30px;
+
   }
 
  .list-group .wd-modules {
