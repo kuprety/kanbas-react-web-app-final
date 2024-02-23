@@ -1,0 +1,117 @@
+.wd-kanbas-navigation {
+    background-color: black;
+    list-style: none;
+    padding: 0px;  margin: 0px;
+    width: 80px;
+    height: 100%;
+  }
+  .wd-kanbas-navigation li {
+    padding: 10px;     margin-bottom: 10px;
+    font-size: 0.8em;  text-align: center;
+  }
+
+  .wd-kanbas-navigation li.wd-active {
+    background-color: white;
+  }
+  .wd-kanbas-navigation li.wd-active a {
+    color: rgb(206, 0, 0);
+  }
+  .wd-kanbas-navigation a {
+    color: white;
+    text-decoration: none;
+  }
+
+
+
+  .wd-kanbas-navigation-sm {
+    font-size: 13pt;
+    padding-top: 40px;
+    margin: 20px;
+
+  }
+
+  .wd-kanbas-navigation-sm li {
+    list-style: none;
+    margin: 20px 0;
+
+  }
+
+  .wd-kanbas-navigation-sm i {
+      vertical-align:middle;
+  }
+
+  .icon-x {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+    margin-right: 40px;
+}
+
+.wd-kanbas-navigation .wd-user-circle {
+  color:lightgray; font-size: 36px;
+}
+
+
+.wd-kanbas-navigation-sm .wd-user-circle-sm {
+  color:lightgray; 
+  font-size: 35px; 
+  padding-right: 11px;
+}
+
+.wd-kanbas-navigation .wd-clock {
+  font-size: 32px;
+}
+
+
+
+.wd-kanbas-navigation-sm .wd-question {
+  font-size:28px;
+}
+
+.wd-kanbas-navigation-sm .wd-tachometer-sm {
+  font-size: 32px; padding-right: 11px;
+}
+
+.wd-kanbas-navigation-sm .wd-book-sm {
+  font-size: 32px; padding-right: 15px;
+}
+
+.wd-kanbas-navigation-sm .wd-envelope-sm {
+  font-size: 30px;; padding-right: 11px
+}
+
+.wd-kanbas-navigation-sm .wd-clock-sm {
+  font-size: 35px;; padding-right: 11px
+}
+
+.wd-kanbas-navigation-sm .wd-desktop-sm {
+  font-size: 30px; padding-right: 11px;
+}
+
+.wd-kanbas-navigation-sm .wd-share-sm {
+  font-size: 30px; padding-right: 15px;
+}
+
+.wd-kanbas-navigation-sm .wd-calendar-sm {
+  font-size: 30px; padding-right: 11px;
+}
+
+.wd-kanbas-navigation-sm .wd-question-sm {
+  font-size: 30px; padding-right: 11px;
+}
+
+.fa-times.wd-color-gray {
+  color: gray;
+}
+
+.d-block .wd-font-size-20 {
+  font-size: 20px;
+}
+
+.wd-kanbas-navigation svg {
+    fill: rgb(206, 0, 0);
+}
+
+.wd-kanbas-navigation .user-circle {
+    fill: lightgray;
+}

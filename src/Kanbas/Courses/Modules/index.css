@@ -1,0 +1,31 @@
+.d-flex .module-button, .module-select, #select-publishing {
+    margin-right: 3px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 35px;
+    border: 1px solid rgb(213, 212, 212);
+    border-radius: 3px;
+    background-color: rgb(243, 243, 243);
+    margin-bottom: 30px;
+  }
+
+ .list-group .wd-modules {
+  margin-right:5%;
+ }
+
+ .wd-modules-container {
+  background-color: rgb(243, 243, 243);
+ padding:20px;
+  margin-bottom:20px;
+ }
+
+
+
+ .wd-margin-bot-10 {
+  margin-bottom: 10px;
+ }
+
+ .wd-green-left-border {
+  border-left:4px solid rgb(0, 165, 0);
+ }

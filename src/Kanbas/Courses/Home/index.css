@@ -1,0 +1,148 @@
+.home-container {
+    display: flex;
+  }
+  
+  .module-list {
+    flex: 3; 
+  }
+  
+  .status-container {
+    flex: 1;
+  }
+  
+  .wd-home-button, .wd-modules select {
+    margin-right: 3px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 35px;
+    border: 1px solid rgb(213, 212, 212);
+    border-radius: 3px;
+    background-color: rgb(243, 243, 243);
+    margin-bottom: 4px;
+    
+  }
+
+  .publishing-button {
+    margin-right: 3px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 35px;
+    border: 1px solid rgb(213, 212, 212);
+    border-radius: 3px;
+    background-color: rgb(243, 243, 243);
+    margin-bottom: 20px;
+
+  }
+
+#published-button {
+    background-color: rgb(69, 184, 69);
+    border: 1px solid rgb(67, 163, 67);
+    color: white;
+  }
+
+  
+  a {
+    text-decoration: none;
+    color: rgb(206, 0, 0)
+  }
+
+  #coming-up {
+    border-bottom: 1px solid lightgray;
+    height: 38px;
+    padding-top: 10px;
+  }
+
+  .coming-up-h5 {
+    margin-right: 20px;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  #coming-up-description {
+    color:gray;
+    font-size: 9pt;
+  }
+
+ .view-calendar {
+    font-size: 10.5pt;
+  }
+
+  .wd-gray-calendar {
+    color: gray;
+  }
+/* 
+
+.wd-course-status button {
+    margin-right: 3px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 35px;
+    border: 1px solid rgb(213, 212, 212);
+    border-radius: 3px;
+    background-color: rgb(243, 243, 243);
+    margin-bottom: 4px;
+    font-size: 11pt;
+    
+  }
+
+  .wd-course-status {
+    margin-left: 10px;
+    margin-right: 10px;
+    white-space: nowrap;
+  
+  }
+
+  .wd-course-status a {
+    color: rgb(230, 0, 0);
+    text-decoration: none;
+
+  }
+
+  .wd-course-status .publishing-button {
+    margin-bottom: 20%;
+  }
+
+  .wd-course-status #published-button {
+    background-color: rgb(69, 184, 69);
+    border: 1px solid rgb(67, 163, 67);
+    color: white;
+  }
+
+ .wd-course-status h4 {
+    padding-top: 5%;
+    font-size: 14pt;
+  }
+
+  .wd-course-status h5 {
+    font-size: 12pt;
+    font-weight: 600;
+    padding-right: 50px;
+  }
+
+ .wd-course-status #coming-up {
+    border-bottom: 1px solid lightgray;
+    height: 38px;
+    padding-top: 12px;
+  }
+
+  .wd-course-status  #coming-up-description {
+    color:gray;
+    font-size: 9pt;
+  }
+
+  .wd-course-status #view-calendar {
+    font-size: 9pt;
+  }
+
+ .wd-course-status p {
+    font-size: 10pt;
+  }
+
+  .wd-course-status ul {
+    list-style: none;
+  } */
