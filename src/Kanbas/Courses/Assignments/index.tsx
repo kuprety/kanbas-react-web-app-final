@@ -1,14 +1,16 @@
 import React from "react";
 import { FaCheckCircle, FaEllipsisV, FaPlusCircle } from "react-icons/fa";
 import { MdEditDocument } from "react-icons/md";
-
 import { Link, useParams } from "react-router-dom";
-import { assignments } from "../../Database";
+import database from "../../Database";
 import "./index.css";
+const { assignments } = database;
+
+
 function Assignments() {
     const { courseId } = useParams();
     const assignmentList = assignments.filter(
-        (assignment) => assignment.course === courseId);
+        (assignment : any) => assignment.course === courseId);
     return (
         <>
                <div className="d-flex">
@@ -53,7 +55,15 @@ function Assignments() {
                     </ul>
                 </li>
             </ul>
+            
         </>
     );
 }
+
 export default Assignments;
+
+const a = [1, 2, 3]
+const e = [4, ...a]
+const [w, x, y, z] = e
+console.log(w)
+

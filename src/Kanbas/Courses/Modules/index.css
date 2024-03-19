@@ -10,6 +10,12 @@
     margin-bottom: 30px;
   }
 
+  .list-add-module {
+    display: flex;
+    align-items: center;
+  }
+  
+
    .module-select {
     margin-top: 50px;
     margin-right: 3px;

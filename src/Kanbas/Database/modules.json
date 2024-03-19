@@ -66,7 +66,7 @@
   {
     "_id": "M103",
     "name": "Advanced React JS",
-    "description": "Advanced techniques and patterns in React.js development.",
+    "description": "Advanced techniques in React.js development.",
     "course": "CS1234",
     "lessons": [
       {

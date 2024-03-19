@@ -14,3 +14,8 @@ body {
   .card-title {
     text-decoration: none; color: navy; font-weight: bold
   }
+
+  .rowing {
+    padding-top: 30px;
+    padding-left: 30px;
+  }
