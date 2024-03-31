@@ -6,7 +6,7 @@ const { modules } = database;
 
 
 const initialState = {
-  modules: modules,
+  modules: [],
   module: { name: "New Module 123", description: "New Description" },
 };
 
@@ -15,19 +15,22 @@ const modulesSlice = createSlice({
   name: "modules",
   initialState,
   reducers: {
-    addModule: (state, action) => {
-      state.modules = [
-        { ...action.payload, _id: new Date().getTime().toString() },
-          ...state.modules,
-      ];
+    
+    setModules: (state, action) => {
+      state.modules = action.payload;
     },
+
+    addModule: (state : any, action) => {
+      state.modules = [action.payload, ...state.modules];
+    },
+
     deleteModule: (state, action) => {
       state.modules = state.modules.filter(
-        (module) => module._id !== action.payload
+        (module : any) => module._id !== action.payload
       );
     },
-    updateModule: (state, action) => {
-      state.modules = state.modules.map((module) => {
+    updateModule: (state : any, action : any) => {
+      state.modules = state.modules.map((module : any) => {
         if (module._id === action.payload._id) {
           return action.payload;
         } else {
@@ -42,6 +45,6 @@ const modulesSlice = createSlice({
 });
 
 
-export const { addModule, deleteModule,
+export const { addModule, deleteModule, setModules,
   updateModule, setModule } = modulesSlice.actions;
 export default modulesSlice.reducer;
