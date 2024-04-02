@@ -26,6 +26,7 @@ function EncodingParametersInURLs() {
 
   return (
     <div>
+      
       <h3>Encoding Parameters In URLs</h3>
       <h4>Integrating React with APIs</h4>
       <h5>Fetching Welcome</h5>
@@ -43,7 +44,16 @@ function EncodingParametersInURLs() {
       <button onClick={() => fetchSubtraction(a, b)}  className="btn btn-secondary">
         Fetch Substraction of {a} - {b}
       </button>
-
+      <h4>Multiply and Divide</h4>
+        <a className="btn btn-primary"
+        href={`http://localhost:4000/a5/multiply/${a}/${b}`}>
+        Multiply {a} * {b}
+        </a>
+        <br></br>
+        <a className="btn btn-primary"
+        href={`http://localhost:4000/a5/divide/${a}/${b}`}>
+        Divide {a} / {b}
+      </a>
       <h3>Path Parameters</h3>
       <a href={`http://localhost:4000/a5/add/${a}/${b}`}>
         Add {a} + {b}
@@ -51,7 +61,6 @@ function EncodingParametersInURLs() {
       <a href={`http://localhost:4000/a5/subtract/${a}/${b}`}>
         Substract {a} - {b}
       </a>
-
       <h3>Query Parameters</h3>
       <a className="btn btn-primary"
         href={`http://localhost:4000/a5/calculator?operation=add&a=${a}&b=${b}`}>

@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-interface Todo {
-  id: number;
-  title: string;
-  description: string;
-  due: string;
-  completed: boolean;
-}
+
 
 function WorkingWithArrays() {
   const API = "http://localhost:4000/a5/todos";
@@ -24,12 +18,10 @@ function WorkingWithArrays() {
   };
 
 
-  const [todos, setTodos] = useState<Todo[]>([]);
-
+  const [todos, setTodos] = useState<{ id: number; title: string; completed: boolean }[]>([]);
   const postTodo = async () => {
     const response = await axios.post(API, todo);
-    const newTodo: Todo = response.data;
-    setTodos([...todos, newTodo]);
+    setTodos([...todos, response.data]);
   };
 
   const fetchTodos = async () => {
