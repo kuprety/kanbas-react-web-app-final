@@ -32,10 +32,10 @@ function WorkingWithObjects() {
       <input onChange={(e) => setAssignment({
             ...assignment, title: e.target.value })}
         value={assignment.title} type="text" />
-      <button onClick={updateTitle} >
+      <button onClick={updateTitle} className="btn btn-primary">
         Update Title to: {assignment.title}
       </button>
-      <button onClick={fetchAssignment} >
+      <button onClick={fetchAssignment} className="btn btn-secondary">
         Fetch Assignment
       </button>
 

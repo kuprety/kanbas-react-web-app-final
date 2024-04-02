@@ -37,10 +37,10 @@ function EncodingParametersInURLs() {
         onChange={(e: any) => setB(e.target.value)} value={b} />
       <input value={result} type="number" readOnly />
       <h3>Fetch Result</h3>
-      <button onClick={() => fetchSum(a, b)} >
+      <button onClick={() => fetchSum(a, b)} className="btn btn-primary">
         Fetch Sum of {a} + {b}
       </button>
-      <button onClick={() => fetchSubtraction(a, b)} >
+      <button onClick={() => fetchSubtraction(a, b)}  className="btn btn-secondary">
         Fetch Substraction of {a} - {b}
       </button>
 

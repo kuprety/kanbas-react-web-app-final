@@ -68,7 +68,7 @@ function WorkingWithArrays() {
   return (
     <div>
       <h3>Working with Arrays</h3>
-      <button onClick={createTodo} >
+      <button onClick={createTodo} className="btn btn-primary">
         Create Todo
       </button>
       <button onClick={() => deleteTodo(todo)}
@@ -78,7 +78,7 @@ function WorkingWithArrays() {
       <button onClick={postTodo}>
         Post Todo
       </button>
-      <button onClick={updateTodo}>
+      <button onClick={updateTodo} className="btn btn-primary">
         Update Todo
       </button>
 
