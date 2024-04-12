@@ -1,0 +1,19 @@
+.buttons-questions {
+    margin-left: 50px;
+}
+
+.individual-button-question {
+    margin-left: 20px;
+    border: 1px rgb(223, 223, 223) solid;
+}
+
+
+.buttons-saving-quiz-details {
+    margin-left: 650px;
+  }
+
+  .individual-buttons-saving {
+    margin-left: 10px;
+    border: 1px rgb(223, 223, 223) solid;
+
+  }
