@@ -1,6 +1,13 @@
-import React, { useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import * as client from "./client";
+
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import "./style.css";
+import { Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+import "./style.css";
+import { FaPlus, FaSearch } from "react-icons/fa";
+import { quiz } from "./client";
 
 function QuizDetailsEditor() {
   const { CourseName } = useParams();
@@ -9,6 +16,19 @@ function QuizDetailsEditor() {
 
   const handleTimeLimitChange = () => {
     setTimeLimitChecked(!timeLimitChecked);
+  };
+
+  const navigate = useNavigate();
+  const fetchProfile = async () => {
+
+  };
+
+
+  useEffect(() => {
+      fetchProfile();
+  }, []);
+  const save = async () => {
+      await client.updateQuiz(quiz);
   };
 
   return (
@@ -142,9 +162,16 @@ function QuizDetailsEditor() {
 <div style={{ marginBottom: "40px" }} />
 
 <div className="buttons-saving-quiz-details">
+<Link to="../Quizzes">
 <button type="button" className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>Cancel</button>
-<button type="button" className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>Save & Publish</button>
+</Link>
+
+<button type="button" onClick={save} className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>Save & Publish</button>
+
+
 <button type="button" className="btn btn-primary individual-buttons-saving" style={{ width: "auto" }}>Save</button>
+
+
 </div>
 <div style={{ marginBottom: "40px" }} />
 

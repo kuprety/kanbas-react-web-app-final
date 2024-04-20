@@ -1,14 +1,35 @@
-import React from "react";
-import { Link, Navigate, useLocation, useParams } from "react-router-dom";
+import * as client from "./client";
+
+import React, { useEffect } from "react";
+import { Link, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import "./style.css";
 import { FaPlus, FaSearch } from "react-icons/fa";
+import { profile } from "../../../../Users/client";
 
 
 function Questions() {
   const { CourseName } = useParams();
   const { pathname } = useLocation();
+
+
+  const navigate = useNavigate();
+  const fetchProfile = async () => {
+      // const account = await client.profile();
+      // setProfile(account);
+      const save = async () => {
+          await client.updateQuiz(profile);
+      };
+  };
+
+
+  useEffect(() => {
+      fetchProfile();
+  }, []);
+  const save = async () => {
+      await client.updateQuiz(profile);
+  };
 
   return (
     <div>
@@ -41,6 +62,9 @@ function Questions() {
           <button type="button" className="btn btn-light individual-button-question" style={{ width: "auto" }}><FaPlus /> New Question</button>
         </Link>
 
+      <button /* </div>onClick={addNewCourse} */ className="btn btn-primary">
+        Add
+      </button>
         <button type="button" className="btn btn-light individual-button-question" style={{ width: "auto" }}><FaPlus /> New Question Group</button>
         <button type="button" className="btn btn-light individual-button-question" style={{ width: "auto" }}><FaSearch /> Find Questions</button>
       </div>
@@ -51,9 +75,17 @@ function Questions() {
 
 
       <div className="buttons-saving-quiz-details">
-        <button type="button" className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>Cancel</button>
+      <Link to="../Quizzes">
+<button type="button" className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>Cancel</button>
+        </Link>
+
+
         <button type="button" className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>Save & Publish</button>
-        <button type="button" className="btn btn-primary individual-buttons-saving" style={{ width: "auto" }}>Save</button>
+        
+        
+
+
+        <button type="button" onClick={save} className="btn btn-primary individual-buttons-saving" style={{ width: "auto" }}>Save</button>
       </div>
       <div style={{ marginBottom: "40px" }} />
 
