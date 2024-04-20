@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
-import QuizDetails from "./Details";
+import QuizDetails from "./Details/Editor";
 
 function Quizzes() {
   const { CourseName } = useParams();

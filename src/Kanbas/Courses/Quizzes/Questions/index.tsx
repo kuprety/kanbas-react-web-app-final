@@ -19,7 +19,7 @@ function Questions() {
       <div>
         <nav className="nav nav-tabs mt-2">
 
-          <Link to="../Quizzes/Details"
+          <Link to="../Quizzes/Details/Editor"
             className={`nav-link ${pathname.includes("Details") ? "active" : ""}`}>Details
           </Link>
 
