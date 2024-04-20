@@ -17,15 +17,18 @@ import QuizDetails from "./Quizzes/Details";
 import Questions from "./Quizzes/Questions";
 import Editor from "./Quizzes/Questions/Editor"
 import QuizDetailsEditor from "./Quizzes/Details/Editor";
+import { log } from "console";
 
 
 
 function Courses({ courses }: { courses: any[]; }) {
-    const API_BASE = process.env.REACT_APP_BASE_API_URL;
-
+    //const API_BASE = process.env.REACT_APP_BASE_API_URL;
+    //console.log(API_BASE)
+    
     const { courseId } = useParams();
-    const COURSES_API = `${API_BASE}/api/courses`;
-    // const COURSES_API = "http://localhost:4000/api/courses";
+    // const COURSES_API = `${API_BASE}/api/courses`;
+    const COURSES_API = "http://localhost:4000/api/courses";
+    console.log(COURSES_API)
     const [course, setCourse] = useState<any>({ _id: "" });
     const findCourseById = async (courseId?: string) => {
       const response = await axios.get(
@@ -74,6 +77,7 @@ function Courses({ courses }: { courses: any[]; }) {
             </div>
         </div>
     );
+
 
 }
 export default Courses;
