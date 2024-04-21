@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { QuizQuestions } from "../QuizQuestions/client";
+
 import {
   BsFillCheckCircleFill, BsPencil,
   BsTrash3Fill, BsPlusCircleFill,

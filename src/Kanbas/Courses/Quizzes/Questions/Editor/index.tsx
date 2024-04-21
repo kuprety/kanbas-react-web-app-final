@@ -1,8 +1,13 @@
 import React from "react";
-function Editor() {
-  
-    return (
-<h1>Aspen's code</h1>
-    )
+import { Link, useParams } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Provider } from "react-redux";
+import QuizQuestionsTable from "../../../../../QuizQuestions/Table";
+
+export default function Quizzes() {
+  return (
+    <div className="container-fluid">
+<QuizQuestionsTable />
+    </div>
+  );
 }
-export default Editor;
