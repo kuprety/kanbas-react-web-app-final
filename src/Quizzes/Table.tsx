@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   BsFillCheckCircleFill, BsPencil,
-  BsTrash3Fill, BsPlusCircleFill,
+  BsTrash3Fill, BsPlusCircleFill, BsBan, BsCheckCircleFill
 } from "react-icons/bs";
 
 import * as client from "./client";
@@ -44,7 +44,8 @@ export default function QuizTable() {
       }
     };
   
-    
+    const [bannedQuizzes, setBannedQuizzes] = useState<{ [key: string]: boolean }>({});
+
 
 
   const fetchQuizzes = async () => {
@@ -135,7 +136,7 @@ const { courseId } = useParams();
             <tr> Assignment Group </tr>
 
               <select value={quiz.assignmentGroup} className="form-select" style={{ width: '200px', marginTop: "10px" }} onChange={(e) =>
-                setQuiz({ ...quiz, assignmentGroup: e.target.value })}>
+                setQuiz({ ...quiz, assignmentGroup: e.target.value })}> 
                 <option value="QUIZZES">Quizzes</option>
                 <option value="EXAMS">Exams</option>
                 <option value="ASSIGNMENTS">Assignments</option>
@@ -172,8 +173,17 @@ const { courseId } = useParams();
                 <button className="btn btn-warning me-2" style={{marginLeft: "10px"}}>
                 <BsPencil onClick={() => selectQuiz(quiz)} />
                 </button>
-
-
+                {!bannedQuizzes[quiz._id] ? (
+                  <BsBan
+                    onClick={() => setBannedQuizzes({ ...bannedQuizzes, [quiz._id]: true })}
+                    style={{ color: "gray", cursor: "pointer" }}
+                  />
+                ) : (
+                  <BsCheckCircleFill
+                    onClick={() => setBannedQuizzes({ ...bannedQuizzes, [quiz._id]: false })}
+                    style={{ color: "green", cursor: "pointer" }}
+                  />
+                )}
 
                     <Button
                       aria-controls="simple-menu"
@@ -212,4 +222,6 @@ const { courseId } = useParams();
     </div>
   );
 }
+
+
 
