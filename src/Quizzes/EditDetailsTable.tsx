@@ -7,7 +7,6 @@ import {
 import * as client from "./client";
 import { Quiz } from "./client";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { Table } from "@mui/material";
 export default function DetailsTable() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [quiz, setQuiz] = useState<Quiz>({
