@@ -38,7 +38,9 @@ function Questions() {
         <Link to="../Quizzes/Questions/Editor"
           className={` ${pathname.includes("Editor") ? "active" : ""}`}>
 
-          <button type="button" className="btn btn-light individual-button-question" style={{ width: "auto" }}><FaPlus /> New Question</button>
+{/* onClick= <QuizQuestionsTable /> */}
+
+          <button  type="button" className="btn btn-light individual-button-question" style={{ width: "auto" }}><FaPlus /> New Question</button>
         </Link>
 
         <button type="button" className="btn btn-light individual-button-question" style={{ width: "auto" }}><FaPlus /> New Question Group</button>
