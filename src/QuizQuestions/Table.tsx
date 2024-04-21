@@ -12,15 +12,14 @@ export default function QuizQuestionsTable() {
     const [quizQuestions, setQuizQuestions] = useState<QuizQuestions>({
         _id: "",
         quizId: "",
-        type: "multipleChoice",
+        type: "trueFalse",
         questionTitle: "",
-        question: "", // Initialize as a string literal
+        question: "",
         choices: [],
         correctAnswer: "",
         possibleAnswers: [],
         points: 0,
     });
-
 
 
 
@@ -78,6 +77,7 @@ export default function QuizQuestionsTable() {
   const handleTypeChange = (event:any) => {
     setSelectedType(event.target.value);
   };
+
 
 
   return (
@@ -257,7 +257,6 @@ function TrueFalse() {
   
         </div>
       </div>
-  
     );
   }
 
@@ -265,136 +264,136 @@ function TrueFalse() {
 
 
 // //Mutiple Choice Screen:
-// function MultipleChoice() {
+function MultipleChoice() {
 
 
-//     //Consts:
-//     const [questionText, setQuestionText] = useState("");
-//     const [choices, setChoices] = useState([""]);
+    //Consts:
+    const [questionText, setQuestionText] = useState("");
+    const [choices, setChoices] = useState([""]);
 
-//     // Handlers for question and choices:
-//     const handleQuestionChange = (event:any) => {
-//       setQuestionText(event.target.value);
-//     };
+    // Handlers for question and choices:
+    const handleQuestionChange = (event:any) => {
+      setQuestionText(event.target.value);
+    };
 
-//     // Handlers for change in a choice:
-//     const handleChoiceChange = (index:any, event:any) => {
-//       const newChoices = [...choices];
-//       newChoices[index] = event.target.value;
-//       setChoices(newChoices);
-//     };
+    // Handlers for change in a choice:
+    const handleChoiceChange = (index:any, event:any) => {
+      const newChoices = [...choices];
+      newChoices[index] = event.target.value;
+      setChoices(newChoices);
+    };
   
-//     //Adds a Choice:
-//     const addChoice = () => {
-//       setChoices([...choices, ""]);
-//     };
+    //Adds a Choice:
+    const addChoice = () => {
+      setChoices([...choices, ""]);
+    };
   
-//     //Removes choice:
-//     const removeChoice = (index:any) => {
-//       const newChoices = [...choices];
-//       newChoices.splice(index, 1);
-//       setChoices(newChoices);
-//     };
+    //Removes choice:
+    const removeChoice = (index:any) => {
+      const newChoices = [...choices];
+      newChoices.splice(index, 1);
+      setChoices(newChoices);
+    };
   
-//     // Count Word Function:
-//     const countWords = (text:any) => {
-//       return text.trim().split(/\s+/).length;
-//     };
+    // Count Word Function:
+    const countWords = (text:any) => {
+      return text.trim().split(/\s+/).length;
+    };
 
-//     // Cancel button that reset question and choices:
-//   const handleCancel = () => {
-//     setQuestionText("");
-//     setChoices([""]);
-//   };
+    // Cancel button that reset question and choices:
+  const handleCancel = () => {
+    setQuestionText("");
+    setChoices([""]);
+  };
 
-//   // Save/Update Question button:
-//   const handleSave = () => {
-//     // Perform save/update action here????
-//   };
+  // Save/Update Question button:
+  const handleSave = () => {
+    // Perform save/update action here????
+  };
   
 
 
 
-//     return (
-//       <div>
-//         <br />
-//         <h6>Enter your question text and multiple answers, then select one answer to be correct.</h6>
-//         <br />
+    return (
+      <div>
+        <br />
+        <h6>Enter your question text and multiple answers, then select one answer to be correct.</h6>
+        <br />
 
-//         {/* Enter Question: */}
-//         <h5>Question:</h5>
-//         <textarea
-//           className="form-control"
-//           placeholder="Enter Question Here"
-//           rows={5}
-//           value={quizQuestions.questionTitle}
-//           onChange={(e) => setQuizQuestions({ ...quizQuestions, questionTitle: e.target.value})}
-//         ></textarea>
+        {/* Enter Question: */}
+        <h5>Question:</h5>
+        <textarea
+          className="form-control"
+          placeholder="Enter Question Here"
+          rows={5}
+          value={quizQuestions.questionTitle}
+          onChange={(e) => setQuizQuestions({ ...quizQuestions, questionTitle: e.target.value})}
+        ></textarea>
 
 
-//         <br></br>
+        <br></br>
 
-//         {/* Choices Section: */}
-//         <h5>Choices:</h5>
-//         {choices.map((choice, index) => (
-//           <div key={index} className="form-group">
+        {/* Choices Section: */}
+        <h5>Choices:</h5>
+        {choices.map((choice, index) => (
+          <div key={index} className="form-group">
             
-//             {/* Radio list: */}
-//             <input
-//               className="form-check-input"
-//               type="radio"
-//               id={`choice-${index}`}
-//               name="choices"
-//               value={choice}
-//               onChange={(event) => handleChoiceChange(index, event)}
-//             />
+            {/* Radio list: */}
+            <input
+              className="form-check-input"
+              type="radio"
+              id={`choice-${index}`}
+              name="choices"
+              value={choice}
+              onChange={(event) => handleChoiceChange(index, event)}
+            />
 
-//             {/* Answer textbox: */}
-//             <textarea
-//               className="form-control"
-//               placeholder={`Enter Choice ${index + 1}`}
-//               rows={2}
-//               value={choice}
-//               onChange={(event) => handleChoiceChange(index, event)}
-//             ></textarea>
+            {/* Answer textbox: */}
+            <textarea
+              className="form-control"
+              placeholder={`Enter Choice ${index + 1}`}
+              rows={2}
+              value={choice}
+              onChange={(event) => handleChoiceChange(index, event)}
+            ></textarea>
 
-//             {/* Remove Button per added choice: */}
-//             <button className="btn btn-primary" type="button" onClick={() => removeChoice(index)}>
-//               Remove
-//             </button>
+            {/* Remove Button per added choice: */}
+            <button className="btn btn-primary" type="button" onClick={() => removeChoice(index)}>
+              Remove
+            </button>
 
-//             {/* closes radio buttons: */}
-//           </div> 
-//         ))}
+            {/* closes radio buttons: */}
+          </div> 
+        ))}
 
-//         <div style={{ marginBottom: '10px' }}></div>
+        <div style={{ marginBottom: '10px' }}></div>
 
-//         {/* Add Choice */}
-//         <button className="btn btn-primary" type="button" onClick={addChoice}>
-//           Add Choice
-//         </button>
+        {/* Add Choice */}
+        <button className="btn btn-primary" type="button" onClick={addChoice}>
+          Add Choice
+        </button>
 
-//         <br></br><br></br><br></br>
-
-
-//     {/* Cancel and Save/Update Question buttons */}
-//       <div>
-//         <button className="btn btn-primary" type="button" onClick={handleCancel}>
-//           Cancel
-//         </button>
-
-//         <span style={{ marginRight: '10px' }}></span>
-
-//         <button className="btn" style={{ backgroundColor: 'red', color: 'white' }} type="button" onClick={createQuizQuestions}>
-//           Save/Update Question
-//         </button>
+        <br></br><br></br><br></br>
 
 
+    {/* Cancel and Save/Update Question buttons */}
+      <div>
+        <button className="btn btn-primary" type="button" onClick={handleCancel}>
+          Cancel
+        </button>
 
-//       </div>
-//     </div>
-//     );
-//   }
+        <span style={{ marginRight: '10px' }}></span>
+
+        <button className="btn" style={{ backgroundColor: 'red', color: 'white' }} type="button" onClick={createQuizQuestions}>
+          Save/Update Question
+        </button>
+
+
+
+      </div>
+    </div>
+    );
+  }
   
 
 
