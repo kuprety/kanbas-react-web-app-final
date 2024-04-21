@@ -6,6 +6,7 @@ import {
 
 import * as client from "./client";
 import { User } from "./client";
+
 export default function UserTable() {
   const [users, setUsers] = useState<User[]>([]);
   const [user, setUser] = useState<User>({

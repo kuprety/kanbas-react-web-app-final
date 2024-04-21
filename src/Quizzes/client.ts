@@ -21,8 +21,6 @@ export const findAllQuizzes = async () => {
   return response.data;
 };
 
-
-
   export const createQuiz = async (quiz: any) => {
     const response = await request.post(`${QUIZZES_API}`, quiz);
     return response.data;
@@ -47,12 +45,10 @@ export const findAllQuizzes = async () => {
 // };
   
 
-
-  
-  export const findUserById = async (id: string) => {
-    const response = await request.get(`${QUIZZES_API}/${id}`);
-    return response.data;
-  };
+export const findQuizById = async (id: string) => {
+  const response = await request.get(`${QUIZZES_API}/${id}`);
+  return response.data;
+};
   
   
   

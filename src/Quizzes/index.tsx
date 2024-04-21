@@ -9,7 +9,8 @@ function Quizzes() {
 
   return (
     <div className="container-fluid">
-      <h1>{ "Lal's code"}</h1>
+       <h1>jiiiiiii</h1>
+      <h1>{ "Lal's codeeee"}</h1>
 
 
     </div>

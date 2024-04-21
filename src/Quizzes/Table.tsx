@@ -6,6 +6,16 @@ import {
 
 import * as client from "./client";
 import { Quiz } from "./client";
+
+//---
+import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+
+import { Link, useParams } from "react-router-dom";
+//--
+
+
 export default function QuizTable() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [quiz, setQuiz] = useState<Quiz>({
@@ -25,7 +35,7 @@ export default function QuizTable() {
 
     const selectQuiz = async (quiz: Quiz) => {
       try {
-        const q = await client.findUserById(quiz._id);
+        const q = await client.findQuizById(quiz._id);
         setQuiz(q);
       } catch (err) {
         console.log(err);
@@ -51,9 +61,14 @@ export default function QuizTable() {
         }
       };
     
-    const fetchQuizzes = async () => {
+    const fetchQuiz = async () => {
     const quizzes = await client.findAllQuizzes();
     setQuiz(quizzes);
+  };
+
+  const fetchQuizzes = async () => {
+    const quizzes = await client.findAllQuizzes();
+    setQuizzes(quizzes);
   };
 
   const deleteQuiz = async (quiz: Quiz) => {
@@ -65,9 +80,28 @@ export default function QuizTable() {
     }
   };
 
-  
+//new
+const { courseId } = useParams();
 
-  useEffect(() => { fetchQuizzes(); }, []);
+
+  //dropdown
+  const [anchorEl, setAnchorEl] = React.useState(null);
+ 
+  const handleClose = () => {
+      setAnchorEl(null);
+  };
+
+  const handleClick = (event: any, clickedQuiz: Quiz) => {
+    setAnchorEl(event.currentTarget);
+    //selectQuiz(clickedQuiz);
+    setCurrentQuiz(clickedQuiz);
+};
+  const [currentQuiz, setCurrentQuiz] = useState<Quiz>(quiz); //added obvi
+
+  //drop
+
+  useEffect(() => { fetchQuizzes()}, []);
+
   return (
     <div>
       <h1>Quiz Table</h1>
@@ -127,6 +161,7 @@ export default function QuizTable() {
       onClick={updateQuiz}
       className="me-2 text-success fs-1 text"
     />
+
     <BsPlusCircleFill
       onClick={createQuiz}
       className="text-success fs-1 text"
@@ -135,10 +170,13 @@ export default function QuizTable() {
             <th>&nbsp;</th>
           </tr>
         </thead>
+        <h1> TABLE:</h1>
+        {'  '}
         <tbody>
           {quizzes.map((quiz: any) => (
             <tr key={quiz._id}>
               <td>{quiz.name}</td>
+
               {/* <td>{user.firstName}</td>
               <td>{user.lastName}</td> */}
               <td>
@@ -146,10 +184,48 @@ export default function QuizTable() {
                   <BsTrash3Fill />
                 </button>
                 <button className="btn btn-warning me-2" style={{marginLeft: "10px"}}>
-      <BsPencil onClick={() => selectQuiz(quiz)} />
-    </button>
+                <BsPencil onClick={() => selectQuiz(quiz)} />
+                </button>
+
+
+
+                    <Button
+                      aria-controls="simple-menu"
+                      aria-haspopup="true"
+                      onClick={(event) => handleClick(event, quiz)}>
+                      Open Menu List
+                    </Button>
+                    <Menu
+                        keepMounted
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                        open={Boolean(anchorEl)}>
+
+                          {quiz &&
+                        <MenuItem onClick={() => selectQuiz(quiz)}>
+                          Publish
+                        </MenuItem>}
+
+                        <MenuItem 
+                        
+                        onClick={() => {
+                          deleteQuiz(quiz);}
+                          }>
+
+                          Delete
+                        </MenuItem>
+
+                        {currentQuiz && 
+                        <MenuItem 
+                        onClick={() => {
+                        selectQuiz(currentQuiz);}}>
+                          <Link
+                            to={`/Kanbas/Courses/${courseId}/Quizzes/${currentQuiz._id}`}>Edit Screen</Link>
+                        </MenuItem>}
+                    </Menu>
 
               </td>
+
 
             </tr>))}
         </tbody>
