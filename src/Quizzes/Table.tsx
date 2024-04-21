@@ -33,14 +33,7 @@ export default function QuizTable() {
       }
     };
 
-    const selectQuiz = async (quiz: Quiz) => {
-      try {
-        const q = await client.findQuizById(quiz._id);
-        setQuiz(q);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+    
     const updateQuiz = async () => {
       try {
         const status = await client.updateQuiz(quiz);
@@ -53,11 +46,6 @@ export default function QuizTable() {
   
     
 
-    
-    const fetchQuiz = async () => {
-    const quizzes = await client.findAllQuizzes();
-    setQuiz(quizzes);
-  };
 
   const fetchQuizzes = async () => {
     const quizzes = await client.findAllQuizzes();
@@ -72,6 +60,13 @@ export default function QuizTable() {
       console.log(err);
     }
   };
+
+
+  const selectQuiz = (clickedQuiz: Quiz) => {
+    setCurrentQuiz(clickedQuiz); // Set currentQuiz directly
+  };
+
+  
 
 //new
 const { courseId } = useParams();
@@ -199,12 +194,12 @@ const { courseId } = useParams();
                         <MenuItem onClick={() => deleteQuiz(quiz)}>Delete</MenuItem>
 
 
-                        {currentQuiz && 
+                        {quiz && 
                         <MenuItem 
                         onClick={() => {
-                        selectQuiz(currentQuiz);}}>
+                        selectQuiz(quiz);}}>
                           <Link
-                            to={`/Kanbas/Courses/${courseId}/Quizzes/${currentQuiz._id}`}>Edit Screen</Link>
+                            to={`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}`}>Edit Screen</Link>
                         </MenuItem>}
                     </Menu>
 
