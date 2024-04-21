@@ -24,14 +24,14 @@ export default function QuizTable() {
     timeLimit: 20, multipleAttempts: false, showCorrectAnswers: false, accessCode: "", oneQuestionAtATime: true,
     webcamRequired: false, lockQuestionsAfterAnswering: false, dueDate: new Date("2024-06-20"), availableDate: new Date(), untilDate: new Date("2024-06-20") });
 
-  const createUser = async () => {
-    try {
-      const newQuiz = await client.createQuiz(quiz);
-      setQuizzes([newQuiz, ...quizzes]);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+    const createQuiz = async () => {
+      try {
+        const newQuiz = await client.createQuiz(quiz);
+        setQuizzes([newQuiz, ...quizzes]);
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
     const selectQuiz = async (quiz: Quiz) => {
       try {
@@ -52,14 +52,7 @@ export default function QuizTable() {
     };
   
     
-    const createQuiz = async () => {
-        try {
-          const newQuiz = await client.createQuiz(quiz);
-          setQuizzes([newQuiz, ...quizzes]);
-        } catch (err) {
-          console.log(err);
-        }
-      };
+
     
     const fetchQuiz = async () => {
     const quizzes = await client.findAllQuizzes();
@@ -87,9 +80,7 @@ const { courseId } = useParams();
   //dropdown
   const [anchorEl, setAnchorEl] = React.useState(null);
  
-  const handleClose = () => {
-      setAnchorEl(null);
-  };
+
 
   const handleClick = (event: any, clickedQuiz: Quiz) => {
     setAnchorEl(event.currentTarget);
@@ -198,7 +189,6 @@ const { courseId } = useParams();
                     <Menu
                         keepMounted
                         anchorEl={anchorEl}
-                        onClose={handleClose}
                         open={Boolean(anchorEl)}>
 
                           {quiz &&
@@ -206,14 +196,8 @@ const { courseId } = useParams();
                           Publish
                         </MenuItem>}
 
-                        <MenuItem 
-                        
-                        onClick={() => {
-                          deleteQuiz(quiz);}
-                          }>
+                        <MenuItem onClick={() => deleteQuiz(quiz)}>Delete</MenuItem>
 
-                          Delete
-                        </MenuItem>
 
                         {currentQuiz && 
                         <MenuItem 
