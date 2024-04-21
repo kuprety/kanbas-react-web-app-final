@@ -42,7 +42,14 @@ export default function QuizTable() {
     };
   
     
-    
+    const createQuiz = async () => {
+        try {
+          const newQuiz = await client.createQuiz(quiz);
+          setQuizzes([newQuiz, ...quizzes]);
+        } catch (err) {
+          console.log(err);
+        }
+      };
     
     const fetchQuizzes = async () => {
     const quizzes = await client.findAllQuizzes();
@@ -52,7 +59,7 @@ export default function QuizTable() {
   const deleteQuiz = async (quiz: Quiz) => {
     try {
       await client.deleteQuiz(quiz);
-      setQuizzes(quizzes.filter((u) => u._id !== quiz._id));
+      setQuizzes(quizzes.filter((q) => q._id !== quiz._id));
     } catch (err) {
       console.log(err);
     }
@@ -79,7 +86,7 @@ export default function QuizTable() {
     />
   </div>
   <td>
-  <tr> Password </tr>
+  <tr> Description </tr>
 
   <div className="col">
     <input 
@@ -121,9 +128,10 @@ export default function QuizTable() {
       className="me-2 text-success fs-1 text"
     />
     <BsPlusCircleFill
-      onClick={createUser}
+      onClick={createQuiz}
       className="text-success fs-1 text"
-    />            </td>
+    />
+                </td>
             <th>&nbsp;</th>
           </tr>
         </thead>
