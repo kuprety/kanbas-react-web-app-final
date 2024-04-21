@@ -49,7 +49,7 @@ export const findAllQuizzes = async () => {
 
 
   
-  export const findUserById = async (id: string) => {
+  export const findQuizById = async (id: string) => {
     const response = await request.get(`${QUIZZES_API}/${id}`);
     return response.data;
   };

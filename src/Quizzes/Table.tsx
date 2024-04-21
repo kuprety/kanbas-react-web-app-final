@@ -14,18 +14,9 @@ export default function QuizTable() {
     timeLimit: 20, multipleAttempts: false, showCorrectAnswers: false, accessCode: "", oneQuestionAtATime: true,
     webcamRequired: false, lockQuestionsAfterAnswering: false, dueDate: new Date("2024-06-20"), availableDate: new Date(), untilDate: new Date("2024-06-20") });
 
-  const createUser = async () => {
-    try {
-      const newQuiz = await client.createQuiz(quiz);
-      setQuizzes([newQuiz, ...quizzes]);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
     const selectQuiz = async (quiz: Quiz) => {
       try {
-        const q = await client.findUserById(quiz._id);
+        const q = await client.findQuizById(quiz._id);
         setQuiz(q);
       } catch (err) {
         console.log(err);
@@ -53,7 +44,7 @@ export default function QuizTable() {
     
     const fetchQuizzes = async () => {
     const quizzes = await client.findAllQuizzes();
-    setQuiz(quizzes);
+    setQuizzes(quizzes);
   };
 
   const deleteQuiz = async (quiz: Quiz) => {
