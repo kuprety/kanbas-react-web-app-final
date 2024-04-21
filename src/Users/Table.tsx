@@ -42,6 +42,8 @@ export default function UserTable() {
     const users = await client.findAllUsers();
     setUsers(users);
   };
+
+
   const deleteUser = async (user: User) => {
     try {
       await client.deleteUser(user);

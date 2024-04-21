@@ -4,7 +4,9 @@ import {
   BsTrash3Fill, BsPlusCircleFill,
 } from "react-icons/bs";
 
+
 import * as client from "./client";
+
 import { Quiz } from "./client";
 export default function QuizTable() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
@@ -14,7 +16,7 @@ export default function QuizTable() {
     timeLimit: 20, multipleAttempts: false, showCorrectAnswers: false, accessCode: "", oneQuestionAtATime: true,
     webcamRequired: false, lockQuestionsAfterAnswering: false, dueDate: new Date("2024-06-20"), availableDate: new Date(), untilDate: new Date("2024-06-20") });
 
-  const createUser = async () => {
+  const createQuiz = async () => {
     try {
       const newQuiz = await client.createQuiz(quiz);
       setQuizzes([newQuiz, ...quizzes]);
@@ -25,7 +27,7 @@ export default function QuizTable() {
 
     const selectQuiz = async (quiz: Quiz) => {
       try {
-        const q = await client.findUserById(quiz._id);
+        const q = await client.findQuizById(quiz._id);
         setQuiz(q);
       } catch (err) {
         console.log(err);
@@ -42,12 +44,14 @@ export default function QuizTable() {
     };
   
     
-    
-    
-    const fetchQuizzes = async () => {
+ 
+
+  const fetchQuizzes = async () => {
     const quizzes = await client.findAllQuizzes();
-    setQuiz(quizzes);
+    setQuizzes(quizzes);
   };
+
+  
 
   const deleteQuiz = async (quiz: Quiz) => {
     try {
@@ -58,12 +62,14 @@ export default function QuizTable() {
     }
   };
 
-  
 
-  useEffect(() => { fetchQuizzes(); }, []);
+
+   useEffect(() => { fetchQuizzes(); }, []);
+
+
   return (
     <div>
-      <h1>Quiz Table</h1>
+      <h1>Details</h1>
       <table className="table">
         <thead>
           <tr>
@@ -79,8 +85,9 @@ export default function QuizTable() {
     />
   </div>
   <td>
-  <tr> Password </tr>
 
+
+  <tr> Description </tr>
   <div className="col">
     <input 
       value={quiz.description} 
@@ -121,7 +128,7 @@ export default function QuizTable() {
       className="me-2 text-success fs-1 text"
     />
     <BsPlusCircleFill
-      onClick={createUser}
+      onClick={createQuiz}
       className="text-success fs-1 text"
     />            </td>
             <th>&nbsp;</th>
