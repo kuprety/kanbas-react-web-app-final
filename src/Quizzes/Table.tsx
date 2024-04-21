@@ -25,7 +25,7 @@ export default function QuizTable() {
 
     const selectQuiz = async (quiz: Quiz) => {
       try {
-        const q = await client.findUserById(quiz._id);
+        const q = await client.findQuizById(quiz._id);
         setQuiz(q);
       } catch (err) {
         console.log(err);
@@ -53,7 +53,7 @@ export default function QuizTable() {
     
     const fetchQuizzes = async () => {
     const quizzes = await client.findAllQuizzes();
-    setQuiz(quizzes);
+    setQuizzes(quizzes);
   };
 
   const deleteQuiz = async (quiz: Quiz) => {
