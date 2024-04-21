@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import "./style.css";
-import DetailsTable from "../../../../../Quizzes/QuizDetails";
+import EditDetailsTable from "../../../../../Quizzes/EditDetailsTable";
 function QuizDetailsEditor() {
   const { CourseName } = useParams();
   const { pathname } = useLocation();
@@ -14,7 +14,7 @@ function QuizDetailsEditor() {
   return (
     
       <div className="container-fluid">
-    <DetailsTable />
+    <EditDetailsTable />
  
 
       </div>
