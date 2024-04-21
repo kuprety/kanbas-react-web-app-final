@@ -12,6 +12,8 @@ import store from "./store";
 import { Provider } from "react-redux";
 
 const API_BASE = process.env.REACT_APP_BASE_API_URL;
+//const API_BASE = "http://localhost:4000/";
+
 function Kanbas() {
   const COURSES_API = `${API_BASE}/api/courses`;
 

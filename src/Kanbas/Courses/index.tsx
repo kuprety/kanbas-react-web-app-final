@@ -24,11 +24,15 @@ import { log } from "console";
 function Courses({ courses }: { courses: any[]; }) {
 
     const API_BASE = process.env.REACT_APP_BASE_API_URL;
+    //const API_BASE = 'http://localhost:4000/';
+
+    //const API_BASE = "http://localhost:4000";
+    //const API_BASE = process.env.REACT_APP_BASE_API_URL || "http://localhost:4000";
     console.log(API_BASE)
     
     const { courseId } = useParams();
-    // const COURSES_API = `${API_BASE}/api/courses`;
-    const COURSES_API = "http://localhost:4000/api/courses";
+     const COURSES_API = `${API_BASE}/api/courses`;
+    //const COURSES_API = "http://localhost:4000/api/courses";
 
     console.log(COURSES_API)
 
