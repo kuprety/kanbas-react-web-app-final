@@ -103,7 +103,7 @@ const handleClick = () => {     setShowComponent(true);   };
 
 <div className="buttons-saving-quiz-details">
 
-<Link to='../Quizzes/${quizId}/Questions'>
+<Link to={`../Quizzes/${quizId}/Questions`}>
   <button type="button" className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>Cancel</button>
   </Link>
 <button  onClick={createQuiz} type="button" className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>Save & Publish</button>
