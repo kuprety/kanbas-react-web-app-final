@@ -5,6 +5,7 @@ import {
 } from "react-icons/bs";
 import * as client from "./client";
 import { QuizQuestions } from "./client";
+import { Link, useLocation } from "react-router-dom";
 
 
 export default function QuizQuestionsTable() {
@@ -22,9 +23,19 @@ export default function QuizQuestionsTable() {
     });
 
 
+    const { pathname } = useLocation();
 
 
   const createQuizQuestions = async () => {
+    try {
+      const newQuizQuestions = await client.createQuizQuestions(quizQuestions);
+      setQuizzesQuestions([newQuizQuestions, ...quizzesQuestions]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSaveQuizQuestions = async () => {
     try {
       const newQuizQuestions = await client.createQuizQuestions(quizQuestions);
       setQuizzesQuestions([newQuizQuestions, ...quizzesQuestions]);
@@ -103,6 +114,8 @@ onChange={(e) => setQuizQuestions({ ...quizQuestions, questionTitle: e.target.va
 
   <div>
   <label>Points:</label>
+
+
 <input value={quizQuestions.points}
 type="number" className="form-control" placeholder="Point Amount" min="0" 
 onChange={(e) => {
@@ -133,6 +146,7 @@ onChange={(e) => {
 {selectedType === "multipleChoice" && <MultipleChoice/>}
 {selectedType === "trueFalse" && <TrueFalse />}
 {selectedType === "fillInTheBlank" && <h1>fi</h1>}
+{selectedType === ""}
 
 
 
@@ -193,6 +207,8 @@ function TrueFalse() {
         const handleCancel = () => {
           setQuestionText("");
           setIsTrue(false);
+          setSelectedType("");
+
         };
       
   
@@ -243,16 +259,18 @@ function TrueFalse() {
   
       {/* Cancel and Save/Update Question buttons */}
       <div>
-          <button className="btn btn-primary" type="button" onClick={handleCancel}>
-            Cancel
-          </button>
-  
+
+      <button type="button" onClick={handleCancel} className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>
+        Cancel
+        </button>
+
+       
           <span style={{ marginRight: '10px' }}></span>
   
   
         <button className="btn" style={{ backgroundColor: 'red', color: 'white' }} type="button"
         onClick={createQuizQuestions}>
-          Save/Update Question
+          Update Question
         </button>
   
         </div>
@@ -302,11 +320,13 @@ function MultipleChoice() {
     };
 
     // Cancel button that reset question and choices:
-  const handleCancel = () => {
-    setQuestionText("");
-    setChoices([""]);
-  };
+    const handleCancel = () => {
+      const newChoices = [...choices];
+      setQuestionText("");
+      setChoices(newChoices);
+      setSelectedType("");
 
+    };
   // Save/Update Question button:
   const handleSave = () => {
     // Perform save/update action here????
@@ -382,14 +402,15 @@ function MultipleChoice() {
 
     {/* Cancel and Save/Update Question buttons */}
       <div>
-        <button className="btn btn-primary" type="button" onClick={handleCancel}>
-          Cancel
+      <button type="button" onClick={handleCancel} className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>
+        Cancel
         </button>
+
 
         <span style={{ marginRight: '10px' }}></span>
 
         <button className="btn" style={{ backgroundColor: 'red', color: 'white' }} type="button" onClick={createQuizQuestions}>
-          Save/Update Question
+          Update Question
         </button>
 
 

@@ -23,6 +23,7 @@ export default function QuestionsTable() {
   });
 
 
+  const { quizId } = useParams();
 
   const { CourseName } = useParams();
   const { pathname } = useLocation();
@@ -41,10 +42,8 @@ const handleClick = () => {     setShowComponent(true);   };
       console.log(err);
     }
   };
-  const { assignmentId, courseId } = useParams();
 
   
-  const { quizId } = useParams();
 
 
 
@@ -85,8 +84,6 @@ const handleClick = () => {     setShowComponent(true);   };
 
 <div style={{ marginTop: "25px" }} />
 
-
-
       <div className="buttons-questions">
 
      
@@ -96,15 +93,7 @@ const handleClick = () => {     setShowComponent(true);   };
 
             {/* <button onClick={handleClick} type="button" className="btn btn-light individual-button-question" style={{ width: "auto" }}><FaPlus /> New Question</button> */}
 
-            <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}/Questions/QuestionEditor`}>
-         <button className="btn btn-light individual-button-question" type="button" onClick={handleClick} style={{ width: "auto" }}><FaPlus /> New Question</button>     
-
-</Link>
-
-
- {showComponent && <QuizQuestionsTable />}
-        <button type="button" className="btn btn-light individual-button-question" style={{ width: "auto" }}><FaPlus /> New Question Group</button>
-        <button type="button" className="btn btn-light individual-button-question" style={{ width: "auto" }}><FaSearch /> Find Questions</button>
+<QuizQuestionsTable />
       </div>
 
 
@@ -113,7 +102,8 @@ const handleClick = () => {     setShowComponent(true);   };
       <div style={{ marginBottom: "40px" }} />
 
 <div className="buttons-saving-quiz-details">
-<Link to="../Quizzes">
+
+<Link to='../Quizzes/${quizId}/Questions'>
   <button type="button" className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>Cancel</button>
   </Link>
 <button  onClick={createQuiz} type="button" className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>Save & Publish</button>
@@ -132,4 +122,12 @@ const handleClick = () => {     setShowComponent(true);   };
 
   );
 }
+
+
+
+
+
+
+
+
 

@@ -12,7 +12,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 export default function DetailsTable() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [quiz, setQuiz] = useState<Quiz>({
-    _id: "", name: "", course: "", title: "",
+    _id: "", published: false, name: "", course: "", title: "",
     description: "", quizType: "", points: 0, assignmentGroup: "Quizzes", shuffleAnswers: true,
     timeLimit: 20, multipleAttempts: false, showCorrectAnswers: false, accessCode: "", oneQuestionAtATime: true,
     webcamRequired: false, lockQuestionsAfterAnswering: false, dueDate: new Date("2024-06-20"), availableDate: new Date(), untilDate: new Date("2024-06-20")
@@ -71,6 +71,7 @@ export default function DetailsTable() {
     }
   };
 
+  const { quizId } = useParams();
 
 
   useEffect(() => {
@@ -89,9 +90,10 @@ export default function DetailsTable() {
         <div className={`nav-link ${pathname.includes("Details/Editor") ? "active" : ""}`}>
           Details
         </div>
-        <Link to="../Quizzes/Questions" className={`nav-link ${pathname.includes("Questions") ? "active" : ""}`}>
-          Questions
-        </Link>
+        <Link to={`../Quizzes/${quizId}/Questions`} className={`nav-link ${pathname.includes("Questions") ? "active" : ""}`}>
+  Questions
+</Link>
+
       </nav>
 
       <div style={{ marginTop: "25px" }} />
