@@ -1,19 +1,14 @@
 import React from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
-import { Route, Routes } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Provider } from "react-redux";
 import QuizDetails from "./Details/Editor";
+import QuizTable from "../../../Quizzes/Table";
 
-function Quizzes() {
-  const { CourseName } = useParams();
-
+export default function Quizzes() {
   return (
     <div className="container-fluid">
-      <h1>{ "Lal's code"}</h1>
-
-
+<QuizTable />
     </div>
   );
 }
-
-export default Quizzes;

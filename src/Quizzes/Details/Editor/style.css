@@ -1,0 +1,38 @@
+.small-width-input {
+    width: 450px;
+  }
+
+  .small-width-input-half {
+    width: 225px;
+  }
+  
+  .textarea-width {
+    width: 1000px
+  }
+
+  .assignment-group {
+    text-align: right;
+  }
+
+  .quiz-type {
+    text-align: right;
+    padding-left: 60px;
+  }
+
+  .width-minutes {
+    width: 80px;
+  }
+
+  .width-access-code {
+    width: 200px;
+  }
+
+  .buttons-saving-quiz-details {
+    margin-left: 650px;
+  }
+
+  .individual-buttons-saving {
+    margin-left: 10px;
+    border: 1px rgb(223, 223, 223) solid;
+
+  }

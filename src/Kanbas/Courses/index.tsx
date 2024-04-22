@@ -17,7 +17,7 @@ import QuizDetails from "./Quizzes/Details";
 import Questions from "./Quizzes/Questions";
 import Editor from "./Quizzes/Questions/Editor"
 import QuizDetailsEditor from "./Quizzes/Details/Editor";
-
+import Util from "../../QuizQuestions/Util"
 
 
 function Courses({ courses }: { courses: any[]; }) {
@@ -65,10 +65,12 @@ function Courses({ courses }: { courses: any[]; }) {
                         <Route path="Assignments/:assignmentId" element={<h1>Assignment Editor</h1>} />
                         <Route path="Grades" element={<h1>Grades</h1>} />
                         <Route path="Quizzes" element={<Quizzes />} />
-                        <Route path="Quizzes/Details" element={<QuizDetails />} />
-                        <Route path="Quizzes/Details/Editor" element={<QuizDetailsEditor />} />
-                        <Route path="Quizzes/Questions" element={<Questions />} />
-                        <Route path="Quizzes/Questions/Editor" element={<Editor />} />
+                        <Route path="Quizzes/:quizId" element={<QuizDetails />} />
+                        <Route path="Quizzes/:quizId/Details/Editor" element={<QuizDetailsEditor />} />
+                        <Route path="Quizzes/:quizId/Questions" element={<Questions />} />
+                        {/* <Route path="Quizzes/:quizId//Questions/Editor" element={<Editor />} /> */}
+                        <Route path="Quizzes/:quizId/Questions/QuestionEditor" element={<Util />} />
+
                     </Routes>
                 </div>
             </div>
