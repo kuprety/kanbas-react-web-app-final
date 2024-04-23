@@ -30,6 +30,7 @@ export default function QuizQuestionsTable() {
     try {
       const newQuizQuestions = await client.createQuizQuestions(quizQuestions);
       setQuizzesQuestions([newQuizQuestions, ...quizzesQuestions]);
+
     } catch (err) {
       console.log(err);
     }
@@ -94,7 +95,6 @@ export default function QuizQuestionsTable() {
 
 
   return (
-
 
 <div className="container">
 
@@ -186,12 +186,13 @@ onChange={(e) => {
 function MultipleChoice() {
     // State for choices
     const [choices, setChoices] = useState(quizQuestions.choices || [""]);
-    const [questionText, setQuestionText] = useState("");
+    const [questionTitle, setQuestionTitle] = useState('');
 
 
     // Handler for updating the question text
     const handleQuestionChange = (event:any) => {
         setQuizQuestions({ ...quizQuestions, question: event.target.value });
+
     };
 
     // Handler for updating a specific choice
@@ -236,6 +237,9 @@ function MultipleChoice() {
         }));
     };
 
+    const [questionText, setQuestionText] = useState('');
+
+
     return (
         <div>
             <br />
@@ -248,9 +252,11 @@ function MultipleChoice() {
                 className="form-control"
                 placeholder="Enter Question Here"
                 rows={5}
-                onChange={handleQuestionChange}
                 value={quizQuestions.question}
+                onChange={(e) => setQuizQuestions({ ...quizQuestions, question: e.target.value })}
             ></textarea>
+
+
 
             <br></br>
 
@@ -309,6 +315,9 @@ function MultipleChoice() {
         </div>
     );
 }
+
+
+
 
 
 
@@ -437,120 +446,42 @@ function TrueFalse() {
 
 
 
-
 //Fill In Blank Screen:
 
+function FillInTheBlank() {
+    const [textAreaValues, setTextAreaValues] = useState(quizQuestions.possibleAnswers || [""]);
   
-  function FillInTheBlank() {
-    // const [questionText, setQuestionText] = useState("");
-    // const [blanks, setBlanks] = useState<Answer[]>([{ answer: "" }]);
-
-    const [blanks, setBlanks] = useState(quizQuestions.choices || [""]);
-    const [questionText, setQuestionText] = useState("");
-  
-//     // Handler for question text change
-//     const handleQuestionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-//       setQuestionText(event.target.value);
-//     };
-
-
-//       // Handler for change in a blank
-// const handleBlankChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
-//     const newBlanks = [...blanks];
-//     newBlanks[index].answer = event.target.value;
-//     setBlanks(newBlanks);
-  
-//     // Update quizQuestions.possibleAnswers
-//     const newPossibleAnswers = [...quizQuestions.possibleAnswers];
-//     newPossibleAnswers[index] = event.target.value;
-//     setQuizQuestions({ ...quizQuestions, possibleAnswers: newPossibleAnswers });
-//   };
-  
-// // Adds a new blank
-// const addBlank = () => {
-//     console.log("Adding new blank");
-//     const newBlanks = [...blanks, { answer: "" }];
-//     console.log("New blanks:", newBlanks);
-//     setBlanks(newBlanks);
-//     const newPossibleAnswers = [...quizQuestions.possibleAnswers, ""];
-//     console.log("New possibleAnswers:", newPossibleAnswers);
-//     setQuizQuestions({ ...quizQuestions, possibleAnswers: newPossibleAnswers });
-// };
-
-
-
-//     // Removes a blank
-// const removeBlank = (index: number) => {
-//     console.log(`Removing blank at index ${index}`);
-//     const newBlanks = [...blanks];
-//     newBlanks.splice(index, 1);
-//     console.log("Updated blanks:", newBlanks);
-//     setBlanks(newBlanks);
-    
-//     const newPossibleAnswers = [...quizQuestions.possibleAnswers];
-//     newPossibleAnswers.splice(index, 1);
-//     console.log("Updated possibleAnswers:", newPossibleAnswers);
-//     setQuizQuestions({ ...quizQuestions, possibleAnswers: newPossibleAnswers });
-// };
-
-
-
     // Handler for updating the question text
     const handleQuestionChange = (event:any) => {
-        setQuizQuestions({ ...quizQuestions, question: event.target.value });
+      setQuizQuestions({ ...quizQuestions, question: event.target.value });
     };
-
-    //Handler for updating a specific choice
-    const handleBlankChange = (index:any, event:any) => {
-        const newChoices = [...blanks];
-        newChoices[index] = event.target.value;
-        setBlanks(newChoices);
-        setQuizQuestions((prev) => ({
-            ...prev,
-            possibleAnswers: blanks,
-        }));
+  
+    // Handler for updating a specific textarea value
+    const handleTextAreaChange = (index:any, event:any) => {
+      const newValues = [...textAreaValues];
+      newValues[index] = event.target.value;
+      setTextAreaValues(newValues);
+      setQuizQuestions({ ...quizQuestions, possibleAnswers: newValues });
     };
-
-
-    
-
-
-
-
-    // Handler for updating the correct answer
-    const handleCorrectAnswerChange = (event:any) => {
-        setQuizQuestions({ ...quizQuestions, correctAnswer: event.target.value });
+  
+    // Handler for adding a new textarea
+    const addTextArea = () => {
+      setTextAreaValues([...textAreaValues, ""]);
+      setQuizQuestions({
+        ...quizQuestions,
+        possibleAnswers: [...quizQuestions.possibleAnswers, ""],
+      });
     };
-
-    // Handler for adding a new choice
-    const addBlank = () => {
-        setBlanks([...blanks, ""]);
+  
+    // Handler for removing a textarea
+    const removeTextArea = (index:any) => {
+      const newValues = [...textAreaValues];
+      newValues.splice(index, 1);
+      setTextAreaValues(newValues);
+      const newPossibleAnswers = [...quizQuestions.possibleAnswers];
+      newPossibleAnswers.splice(index, 1);
+      setQuizQuestions({ ...quizQuestions, possibleAnswers: newPossibleAnswers });
     };
-
-
-        // Cancel button that reset question and choices:
-    const handleCancel = () => {
-      const newChoices = [...blanks];
-      setQuestionText("");
-      setBlanks(newChoices);
-      setSelectedType("");
-    };
-
-
-    // Handler for removing a choice
-    const removeBlank = (index:any) => {
-        const newBlanks = [...blanks];
-        newBlanks.splice(index, 1);
-        setBlanks(newBlanks);
-        setQuizQuestions((prev) => ({
-            ...prev,
-            blanks: newBlanks,
-        }));
-    };
-
-
-
-
   
     return (
       <div>
@@ -565,76 +496,53 @@ function TrueFalse() {
           className="form-control"
           placeholder="Enter Question Here"
           rows={5}
-          onChange={(e) => setQuizQuestions({ ...quizQuestions, question: e.target.value })}
+          onChange={handleQuestionChange}
         ></textarea>
-  
   
         <br />
   
         {/* Answer Section */}
         <h5>Answers:</h5>
-        {blanks.map((answer, index) => (
+        {textAreaValues.map((value, index) => (
           <div key={index} className="form-group">
-
-                    <textarea
-                        className="form-control"
-                        placeholder={`Enter Choice ${index + 1}`}
-                        rows={2}
-                        value={answer}
-                        onChange={(event) => handleBlankChange(index, event)}
-                    ></textarea>
-
-            {/* <input
+            <textarea
               className="form-control"
-              type="text"
-              placeholder={`Possible Answer ${index + 1}`}
-              value={answer}
-              onChange={(event) => handleBlankChange(index, event)}
-            /> */}
-
-
-                    {/* Choice input
-                    <textarea
-                        className="form-control"
-                        placeholder={`Enter Choice ${index + 1}`}
-                        rows={2}
-                        value={choice}
-                        onChange={(event) => handleChoiceChange(index, event)}
-                    ></textarea> */}
-
-
-
-
-
+              placeholder={`Enter Choice ${index + 1}`}
+              rows={2}
+              value={value}
+              onChange={(event) => handleTextAreaChange(index, event)}
+            ></textarea>
   
-            <button className="btn btn-primary" type="button" onClick={() => removeBlank(index)}>
+            <button
+              className="btn btn-primary"
+              type="button"
+              onClick={() => removeTextArea(index)}
+            >
               Remove
             </button>
           </div>
         ))}
   
         <div style={{ marginTop: "10px" }}></div>
-
   
-        {/* Add Blank Button */}
-        <button className="btn btn-primary" type="button" onClick={addBlank}>
+        {/* Add Textarea Button */}
+        <button className="btn btn-primary" type="button" onClick={addTextArea}>
           Add Blank
         </button>
   
-        <br></br><br></br>
+        <br></br>
+        <br></br>
   
-        {/* Cancel and Save/Update Question buttons */}
+        {/* Save/Update Question button */}
         <div>
-          {/* <button className="btn btn-primary" type="button" onClick={handleCancel}>
-            Cancel
-          </button> */}
-  
-          <span style={{ marginRight: "10px" }}></span>
-  
-          <button className="btn" style={{ backgroundColor: 'red', color: 'white' }} type="button"
-        onClick={createQuizQuestions}>
-          Save/Update Question
-        </button>
+          <button
+            className="btn"
+            style={{ backgroundColor: "red", color: "white" }}
+            type="button"
+            onClick={createQuizQuestions}
+          >
+            Save/Update Question
+          </button>
         </div>
       </div>
     );
@@ -645,21 +553,6 @@ function TrueFalse() {
 
 
 
-
 }
 
 
-
-
-
-
-
-
-{/* <input
-        value={quiz.name}
-        className="form-control small-width-input"
-        placeholder="Unnamed Quiz"
-
-        onChange={(e) => setQuiz({ ...quiz, name: e.target.value })}
-
-      /> */}
