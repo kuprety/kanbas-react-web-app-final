@@ -7,9 +7,9 @@ export interface QuizQuestions {
     type: "multipleChoice" | "trueFalse" | "fillInTheBlank"; 
     questionTitle: string; 
     question: string;
-    choices?: string[];
+    choices: string[];
     correctAnswer: string | boolean;
-    possibleAnswers?: string[]; 
+    possibleAnswers: string[]; 
     points: number; 
 }
 

@@ -15,7 +15,7 @@ export default function QuizQuestionsTable() {
         quizId: "",
         type: "multipleChoice",
         questionTitle: "",
-        question: "", // Initialize as a string literal
+        question: "",
         choices: [],
         correctAnswer: "",
         possibleAnswers: [],
@@ -25,7 +25,7 @@ export default function QuizQuestionsTable() {
 
     const { pathname } = useLocation();
 
-
+  
   const createQuizQuestions = async () => {
     try {
       const newQuizQuestions = await client.createQuizQuestions(quizQuestions);
@@ -78,17 +78,19 @@ export default function QuizQuestionsTable() {
     }
   };
 
-  
 
   useEffect(() => { fetchQuizzesQuestions(); }, []);
 
 
-  //Added From Origional:
   const [selectedType, setSelectedType] = useState("");
 
-  const handleTypeChange = (event:any) => {
-    setSelectedType(event.target.value);
-  };
+
+    //Changes the type from t/f to MC to FillInTheBlank:
+    const handleTypeChange = (event:any) => {
+        const selectedType = event.target.value;
+        setSelectedType(selectedType);
+        setQuizQuestions({ ...quizQuestions, type: selectedType });
+      }
 
 
   return (
@@ -145,7 +147,7 @@ onChange={(e) => {
 {/* Display different screen based on the select of question type: */}
 {selectedType === "multipleChoice" && <MultipleChoice/>}
 {selectedType === "trueFalse" && <TrueFalse />}
-{selectedType === "fillInTheBlank" && <h1>fi</h1>}
+{selectedType === "fillInTheBlank" && <FillInTheBlank />}
 {selectedType === ""}
 
 
@@ -171,6 +173,155 @@ onChange={(e) => {
 
 </div>
     );
+
+
+
+
+
+
+
+
+
+// //Mutiple Choice Screen:
+function MultipleChoice() {
+    // State for choices
+    const [choices, setChoices] = useState(quizQuestions.choices || [""]);
+    const [questionText, setQuestionText] = useState("");
+
+
+    // Handler for updating the question text
+    const handleQuestionChange = (event:any) => {
+        setQuizQuestions({ ...quizQuestions, question: event.target.value });
+    };
+
+    // Handler for updating a specific choice
+    const handleChoiceChange = (index:any, event:any) => {
+        const newChoices = [...choices];
+        newChoices[index] = event.target.value;
+        setChoices(newChoices);
+        setQuizQuestions((prev) => ({
+            ...prev,
+            choices: newChoices,
+        }));
+    };
+
+    // Handler for updating the correct answer
+    const handleCorrectAnswerChange = (event:any) => {
+        setQuizQuestions({ ...quizQuestions, correctAnswer: event.target.value });
+    };
+
+    // Handler for adding a new choice
+    const addChoice = () => {
+        setChoices([...choices, ""]);
+    };
+
+
+        // Cancel button that reset question and choices:
+    const handleCancel = () => {
+      const newChoices = [...choices];
+      setQuestionText("");
+      setChoices(newChoices);
+      setSelectedType("");
+    };
+
+
+    // Handler for removing a choice
+    const removeChoice = (index:any) => {
+        const newChoices = [...choices];
+        newChoices.splice(index, 1);
+        setChoices(newChoices);
+        setQuizQuestions((prev) => ({
+            ...prev,
+            choices: newChoices,
+        }));
+    };
+
+    return (
+        <div>
+            <br />
+            <h6>Enter your question text and multiple answers, then select one answer to be correct.</h6>
+            <br />
+
+            {/* Question input */}
+            <h5>Question:</h5>
+            <textarea
+                className="form-control"
+                placeholder="Enter Question Here"
+                rows={5}
+                onChange={handleQuestionChange}
+                value={quizQuestions.question}
+            ></textarea>
+
+            <br></br>
+
+            {/* Choices */}
+            <h5>Choices:</h5>
+            {choices.map((choice, index) => (
+                <div key={index} className="form-group">
+                    {/* Radio button */}
+                    <input
+                        className="form-check-input"
+                        type="radio"
+                        id={`choice-${index}`}
+                        name="choicesGroup"
+                        value={choice}
+                        checked={quizQuestions.correctAnswer === choice}
+                        onChange={handleCorrectAnswerChange}
+                    />
+
+                    {/* Choice input */}
+                    <textarea
+                        className="form-control"
+                        placeholder={`Enter Choice ${index + 1}`}
+                        rows={2}
+                        value={choice}
+                        onChange={(event) => handleChoiceChange(index, event)}
+                    ></textarea>
+
+                    {/* Remove button */}
+                    <button className="btn btn-primary" type="button" onClick={() => removeChoice(index)}>
+                        Remove
+                    </button>
+                </div>
+            ))}
+
+            {/* Add choice button */}
+            <button className="btn btn-primary" type="button" onClick={addChoice}>
+                Add Choice
+            </button>
+
+            <br></br>
+            <br></br>
+
+            {/* Save/Update Question button */}
+            <div>
+
+
+                   <button type="button" onClick={handleCancel} className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>
+          Cancel
+          </button>
+
+                <button className="btn" style={{ backgroundColor: 'red', color: 'white' }} type="button"
+                    onClick={createQuizQuestions}>
+                    Save/Update Question
+                </button>
+            </div>
+        </div>
+    );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -282,146 +433,6 @@ function TrueFalse() {
 
 
 
-// //Mutiple Choice Screen:
-function MultipleChoice() {
-
-
-    //Consts:
-    const [questionText, setQuestionText] = useState("");
-    const [choices, setChoices] = useState([""]);
-
-    // Handlers for question and choices:
-    const handleQuestionChange = (event:any) => {
-      setQuestionText(event.target.value);
-    };
-
-    // Handlers for change in a choice:
-    const handleChoiceChange = (index:any, event:any) => {
-      const newChoices = [...choices];
-      newChoices[index] = event.target.value;
-      setChoices(newChoices);
-    };
-  
-    //Adds a Choice:
-    const addChoice = () => {
-      setChoices([...choices, ""]);
-    };
-  
-    //Removes choice:
-    const removeChoice = (index:any) => {
-      const newChoices = [...choices];
-      newChoices.splice(index, 1);
-      setChoices(newChoices);
-    };
-  
-    // Count Word Function:
-    const countWords = (text:any) => {
-      return text.trim().split(/\s+/).length;
-    };
-
-    // Cancel button that reset question and choices:
-    const handleCancel = () => {
-      const newChoices = [...choices];
-      setQuestionText("");
-      setChoices(newChoices);
-      setSelectedType("");
-
-    };
-  // Save/Update Question button:
-  const handleSave = () => {
-    // Perform save/update action here????
-  };
-  
-
-
-
-    return (
-      <div>
-        <br />
-        <h6>Enter your question text and multiple answers, then select one answer to be correct.</h6>
-        <br />
-
-        {/* Enter Question: */}
-        <h5>Question:</h5>
-        <textarea
-          className="form-control"
-          placeholder="Enter Question Here"
-          rows={5}
-          value={quizQuestions.questionTitle}
-          onChange={(e) => setQuizQuestions({ ...quizQuestions, questionTitle: e.target.value})}
-        ></textarea>
-
-
-        <br></br>
-
-        {/* Choices Section: */}
-        <h5>Choices:</h5>
-        {choices.map((choice, index) => (
-          <div key={index} className="form-group">
-            
-            {/* Radio list: */}
-            <input
-              className="form-check-input"
-              type="radio"
-              id={`choice-${index}`}
-              name="choices"
-              value={choice}
-
-              checked={quizQuestions.correctAnswer === false}
-              onChange={(e) => setQuizQuestions({ ...quizQuestions, correctAnswer: false })}
-  
-            />
-
-            {/* Answer textbox: */}
-            <textarea
-              className="form-control"
-              placeholder={`Enter Choice ${index + 1}`}
-              rows={2}
-              value={choice}
-              onChange={(event) => handleChoiceChange(index, event)}
-            ></textarea>
-
-            {/* Remove Button per added choice: */}
-            <button className="btn btn-primary" type="button" onClick={() => removeChoice(index)}>
-              Remove
-            </button>
-
-            {/* closes radio buttons: */}
-          </div> 
-        ))}
-
-        <div style={{ marginBottom: '10px' }}></div>
-
-        {/* Add Choice */}
-        <button className="btn btn-primary" type="button" onClick={addChoice}>
-          Add Choice
-        </button>
-
-        <br></br><br></br><br></br>
-
-
-    {/* Cancel and Save/Update Question buttons */}
-      <div>
-      <button type="button" onClick={handleCancel} className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>
-        Cancel
-        </button>
-
-
-        <span style={{ marginRight: '10px' }}></span>
-
-        <button className="btn" style={{ backgroundColor: 'red', color: 'white' }} type="button" onClick={createQuizQuestions}>
-          Update Question
-        </button>
-
-
-
-      </div>
-
-      
-    </div>
-    );
-  }
-  
 
 
 
@@ -429,6 +440,205 @@ function MultipleChoice() {
 
 //Fill In Blank Screen:
 
+  
+  function FillInTheBlank() {
+    // const [questionText, setQuestionText] = useState("");
+    // const [blanks, setBlanks] = useState<Answer[]>([{ answer: "" }]);
+
+    const [blanks, setBlanks] = useState(quizQuestions.choices || [""]);
+    const [questionText, setQuestionText] = useState("");
+  
+//     // Handler for question text change
+//     const handleQuestionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+//       setQuestionText(event.target.value);
+//     };
+
+
+//       // Handler for change in a blank
+// const handleBlankChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
+//     const newBlanks = [...blanks];
+//     newBlanks[index].answer = event.target.value;
+//     setBlanks(newBlanks);
+  
+//     // Update quizQuestions.possibleAnswers
+//     const newPossibleAnswers = [...quizQuestions.possibleAnswers];
+//     newPossibleAnswers[index] = event.target.value;
+//     setQuizQuestions({ ...quizQuestions, possibleAnswers: newPossibleAnswers });
+//   };
+  
+// // Adds a new blank
+// const addBlank = () => {
+//     console.log("Adding new blank");
+//     const newBlanks = [...blanks, { answer: "" }];
+//     console.log("New blanks:", newBlanks);
+//     setBlanks(newBlanks);
+//     const newPossibleAnswers = [...quizQuestions.possibleAnswers, ""];
+//     console.log("New possibleAnswers:", newPossibleAnswers);
+//     setQuizQuestions({ ...quizQuestions, possibleAnswers: newPossibleAnswers });
+// };
+
+
+
+//     // Removes a blank
+// const removeBlank = (index: number) => {
+//     console.log(`Removing blank at index ${index}`);
+//     const newBlanks = [...blanks];
+//     newBlanks.splice(index, 1);
+//     console.log("Updated blanks:", newBlanks);
+//     setBlanks(newBlanks);
+    
+//     const newPossibleAnswers = [...quizQuestions.possibleAnswers];
+//     newPossibleAnswers.splice(index, 1);
+//     console.log("Updated possibleAnswers:", newPossibleAnswers);
+//     setQuizQuestions({ ...quizQuestions, possibleAnswers: newPossibleAnswers });
+// };
+
+
+
+    // Handler for updating the question text
+    const handleQuestionChange = (event:any) => {
+        setQuizQuestions({ ...quizQuestions, question: event.target.value });
+    };
+
+    //Handler for updating a specific choice
+    const handleBlankChange = (index:any, event:any) => {
+        const newChoices = [...blanks];
+        newChoices[index] = event.target.value;
+        setBlanks(newChoices);
+        setQuizQuestions((prev) => ({
+            ...prev,
+            possibleAnswers: blanks,
+        }));
+    };
+
+
+    
+
+
+
+
+    // Handler for updating the correct answer
+    const handleCorrectAnswerChange = (event:any) => {
+        setQuizQuestions({ ...quizQuestions, correctAnswer: event.target.value });
+    };
+
+    // Handler for adding a new choice
+    const addBlank = () => {
+        setBlanks([...blanks, ""]);
+    };
+
+
+        // Cancel button that reset question and choices:
+    const handleCancel = () => {
+      const newChoices = [...blanks];
+      setQuestionText("");
+      setBlanks(newChoices);
+      setSelectedType("");
+    };
+
+
+    // Handler for removing a choice
+    const removeBlank = (index:any) => {
+        const newBlanks = [...blanks];
+        newBlanks.splice(index, 1);
+        setBlanks(newBlanks);
+        setQuizQuestions((prev) => ({
+            ...prev,
+            blanks: newBlanks,
+        }));
+    };
+
+
+
+
+  
+    return (
+      <div>
+        <br />
+        <h6>Enter your question text and provide all possible answers.</h6>
+        <br />
+  
+        {/* Question */}
+        <h5>Question:</h5>
+        <textarea
+          value={quizQuestions.question}
+          className="form-control"
+          placeholder="Enter Question Here"
+          rows={5}
+          onChange={(e) => setQuizQuestions({ ...quizQuestions, question: e.target.value })}
+        ></textarea>
+  
+  
+        <br />
+  
+        {/* Answer Section */}
+        <h5>Answers:</h5>
+        {blanks.map((answer, index) => (
+          <div key={index} className="form-group">
+
+                    <textarea
+                        className="form-control"
+                        placeholder={`Enter Choice ${index + 1}`}
+                        rows={2}
+                        value={answer}
+                        onChange={(event) => handleBlankChange(index, event)}
+                    ></textarea>
+
+            {/* <input
+              className="form-control"
+              type="text"
+              placeholder={`Possible Answer ${index + 1}`}
+              value={answer}
+              onChange={(event) => handleBlankChange(index, event)}
+            /> */}
+
+
+                    {/* Choice input
+                    <textarea
+                        className="form-control"
+                        placeholder={`Enter Choice ${index + 1}`}
+                        rows={2}
+                        value={choice}
+                        onChange={(event) => handleChoiceChange(index, event)}
+                    ></textarea> */}
+
+
+
+
+
+  
+            <button className="btn btn-primary" type="button" onClick={() => removeBlank(index)}>
+              Remove
+            </button>
+          </div>
+        ))}
+  
+        <div style={{ marginTop: "10px" }}></div>
+
+  
+        {/* Add Blank Button */}
+        <button className="btn btn-primary" type="button" onClick={addBlank}>
+          Add Blank
+        </button>
+  
+        <br></br><br></br>
+  
+        {/* Cancel and Save/Update Question buttons */}
+        <div>
+          {/* <button className="btn btn-primary" type="button" onClick={handleCancel}>
+            Cancel
+          </button> */}
+  
+          <span style={{ marginRight: "10px" }}></span>
+  
+          <button className="btn" style={{ backgroundColor: 'red', color: 'white' }} type="button"
+        onClick={createQuizQuestions}>
+          Save/Update Question
+        </button>
+        </div>
+      </div>
+    );
+  }
 
 
 
