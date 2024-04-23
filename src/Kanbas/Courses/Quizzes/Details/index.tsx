@@ -57,7 +57,9 @@ function QuizDetails() {
             <button onClick= {() => handlePublishToggle()}>{quiz.published ? "Unpublish" : "Publish"}</button>
             <button > <Link
                             to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}/Details/Editor`}>Quiz Editor</Link></button>
-            <button> Preview </button>
+            <button > <Link
+                            to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}/Preview`}>Preview</Link></button>
+
 
             
             <h1>Quiz Details:</h1>
