@@ -131,8 +131,17 @@ onChange={(e) => {
  
 </input>
 </div>
- 
- 
+<div style={{ marginTop: "30px" }} />
+
+ <p>Enter your question text below</p>
+           <h5>Question:</h5>
+            <textarea
+                className="form-control"
+                placeholder="Enter Question Here"
+                rows={5}
+                value={quizQuestions.question}
+                onChange={(e) => setQuizQuestions({ ...quizQuestions, question: e.target.value })}
+            ></textarea>
  
 <br></br>
  
@@ -244,11 +253,15 @@ function MultipleChoice() {
     return (
         <div>
             <br />
-            <h6>Enter your question text and multiple answers, then select one answer to be correct.</h6>
             <br />
+            <h6>Enter multiple answers, then select one answer to be correct.</h6>
  
+            <div>
+ 
+
+ </div>
             {/* Question input */}
-            <h5>Question:</h5>
+            {/* <h5>Question:</h5>
             <textarea
                 className="form-control"
                 placeholder="Enter Question Here"
@@ -256,7 +269,7 @@ function MultipleChoice() {
                 value={quizQuestions.question}
                 onChange={(e) => setQuizQuestions({ ...quizQuestions, question: e.target.value })}
             ></textarea>
- 
+  */}
  
  
             <br></br>
@@ -523,16 +536,16 @@ function TrueFalse() {
     return (
       <div>
         <br />
-        <h6>Enter your question text and select if True or False is the correct answer.</h6>
-        <br />
-        <h5>Question:</h5>
+
+        <h6>Select if True or False is the correct answer.</h6>
+        {/* <h5>Question:</h5>
         <textarea
           value={quizQuestions.question}
           className="form-control"
           placeholder="Enter Question Here"
           rows={5}
           onChange={(e) => setQuizQuestions({ ...quizQuestions, question: e.target.value })}
-        ></textarea>
+        ></textarea> */}
   
   
         <div>
@@ -607,7 +620,7 @@ function FillInTheBlank() {
     // Handler for updating a specific textarea value
     const handleTextAreaChange = (index:any, event:any) => {
       const newValues = [...textAreaValues];
-      newValues[index] = event.target.value;
+      newValues[index] = event;
       setTextAreaValues(newValues);
       setQuizQuestions({ ...quizQuestions, possibleAnswers: newValues });
     };
@@ -634,31 +647,24 @@ function FillInTheBlank() {
     return (
       <div>
         <br />
-        <h6>Enter your question text and provide all possible answers.</h6>
+        <br />
+
+        <h6>Provide all possible answers.</h6>
         <br />
   
         {/* Question */}
-        <h5>Question:</h5>
-        <textarea
-          value={quizQuestions.question}
-          className="form-control"
-          placeholder="Enter Question Here"
-          rows={5}
-          onChange={handleQuestionChange}
-        ></textarea>
-  
-        <br />
+
   
         {/* Answer Section */}
         <h5>Answers:</h5>
         {textAreaValues.map((value, index) => (
-          <div key={index} className="form-group">
+          <div className="form-group">
             <textarea
               className="form-control"
               placeholder={`Enter Choice ${index + 1}`}
               rows={2}
               value={value}
-              onChange={(event) => handleTextAreaChange(index, event)}
+              onChange={(event) => handleTextAreaChange(index, event.target.value)}
             ></textarea>
   
             <button

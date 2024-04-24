@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './index.css';
+// import { QuizQuestions } from "../../../../QuizQuestions/client";
 import { QuizQuestions } from "./questionsclient";
 
 import * as client from "./client";
@@ -27,7 +28,7 @@ function QuizPreview() {
     const { quizId } = useParams<{ quizId:any }>();
     const { courseId } = useParams<{ courseId:any }>();
 
-    const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+  
     const [quiz, setQuiz] = useState<Quiz>({
         _id: "", published: false, name:"", course: "", title: "",
         description: "", quizType: "", points: 0, assignmentGroup: "Quizzes", shuffleAnswers: true,
@@ -42,6 +43,8 @@ function QuizPreview() {
         };
 
 
+
+  
     const [quizzesQuestions, setQuizzesQuestions] = useState<QuizQuestions[]>([]);
     const [quizQuestions, setQuizQuestions] = useState<QuizQuestions>({
         _id: "",
@@ -56,9 +59,15 @@ function QuizPreview() {
     });
 
 
+    const fetchQuizzesQuestions = async () => {
+      const quizzessQuestions = await client.findAllQuizzesQuestions();
+      setQuizzesQuestions(quizzessQuestions);
+    };
+        
         
     useEffect(() => { fetchQuiz(); }, [quizId]);
 
+    useEffect(() => { fetchQuizzesQuestions(); }, []);
 
 
         
@@ -78,13 +87,26 @@ function QuizPreview() {
                     <p>{quizQuestions.question}</p>
                     <p>Quiz question goes here</p>
                     </div>
-        
+                    <table>
+<tbody>
+    {quizzesQuestions.map((quizQuestions: any) => (
+      <tr key={quizQuestions._id}>
+        <td>{quizQuestions.quizId}</td>
+        <td>{quizQuestions.type}</td>
+        <td>{quizQuestions.questionTitle}</td>
+        <td>{quizQuestions.question}</td>
+        <td>{quizQuestions.choices}</td>
+        <td>{quizQuestions.correctAnswer}</td>
+        <td>{quizQuestions.possibleAnswers}</td>
+        <td>{quizQuestions.points}</td>
+      </tr>))}
+  </tbody>
+</table>
 
                     <div style={{ marginTop: "100px" }} />
 
 
-           <button className="btn btn-light individual-button-question">
-            Next</button> 
+ 
 
 
             <div style={{ marginTop: "50px" }} />
