@@ -53,15 +53,17 @@ function QuizDetails() {
 
     return (
         <div>
+<div style={{ marginTop: "20px" }} />
 
-            <button onClick= {() => handlePublishToggle()}>{quiz.published ? "Unpublish" : "Publish"}</button>
-            <button > <Link
+            <button className="btn btn-light individual-buttons-saving" onClick= {() => handlePublishToggle()}>{quiz.published ? "Unpublish" : "Publish"}</button>
+            <button className="btn btn-light individual-buttons-saving" > <Link
                             to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}/Details/Editor`}>Quiz Editor</Link></button>
-            <button > <Link
+            <button className="btn btn-light individual-buttons-saving"> <Link
                             to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}/Preview`}>Preview</Link></button>
 
 
-            
+<div style={{ marginTop: "10px" }} />
+
             <h1>Quiz Details:</h1>
         
         <div className="container details-container">
