@@ -9,6 +9,9 @@ const request = axios.create({
   withCredentials: true,
 })
 
+export const QUIZQUESTIONS_API = `${BASE_API}/api/quizQuestions`;
+
+
 
 export const updateQuiz = async (quiz: any) => {
   const response = await request.put(`${QUIZZES_API}/${quiz._id}`, quiz);
@@ -60,7 +63,7 @@ export function createQuizQuestions(quizQuestions: any) {
   throw new Error("Function not implemented.");
 }
 
-export function findAllQuizzesQuestions() {
-  throw new Error("Function not implemented.");
-}
-  
+export const findAllQuizzesQuestions = async () => {
+  const response = await request.get(`${QUIZQUESTIONS_API}`);
+  return response.data;
+};

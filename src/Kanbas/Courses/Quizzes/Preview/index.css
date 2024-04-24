@@ -35,3 +35,59 @@
 .submitQuiz {
     padding-left: 665px;
 }
+
+.quizTitlePoints {
+    background-color: rgb(241, 241, 241);
+    width: 800px;
+    padding: 1px;
+    border: 1pt solid rgb(223, 223, 223);
+
+}
+
+.questionTitle p {
+    font-size: 18pt;
+    margin-left: 20px;
+    margin-right: 590px;
+    margin-top: 16px;
+
+}
+
+.points {
+    font-size: 13pt;
+}
+
+.entireQuestion {
+    border: 1pt solid rgb(223, 223, 223);
+    padding-bottom: 50px;
+    margin-bottom: 40px;
+}
+
+.entireQuestionEditor {
+
+    border: 1pt solid rgb(221, 221, 221);
+    padding: 20px;
+    padding-bottom: 50px;
+    margin-bottom: 40px;
+
+
+}
+.actualQuestion p {
+    margin: 20px;
+    margin-top: 24px;
+
+}
+
+.questionButtons {
+    margin-left: 20px;
+}
+
+.questionLabel {
+    margin-left: 10px;
+}
+
+
+
+.fillBlankTextArea {
+    margin-left: 20px;
+    width: 750px;
+}

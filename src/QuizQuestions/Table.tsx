@@ -3,9 +3,9 @@ import {
   BsFillCheckCircleFill, BsPencil,
   BsTrash3Fill, BsPlusCircleFill,
 } from "react-icons/bs";
-import * as client from "./client";
-import { QuizQuestions } from "./client";
-import { Link, useLocation } from "react-router-dom";
+import * as client from "./questionsclient";
+import { QuizQuestions } from "./questionsclient";
+import { Link, useLocation, useParams } from "react-router-dom";
  
  
 export default function QuizQuestionsTable() {
@@ -24,7 +24,8 @@ export default function QuizQuestionsTable() {
  
  
     const { pathname } = useLocation();
- 
+    const { quizId } = useParams<{ quizId:any }>();
+
   
   const createQuizQuestions = async () => {
     try {
@@ -163,22 +164,7 @@ onChange={(e) => {
  
  
  
-{/* Testing!!!!! */}
-<table>
-<tbody>
-    {quizzesQuestions.map((quizQuestions: any) => (
-      <tr key={quizQuestions._id}>
-        <td>{quizQuestions.quizId}</td>
-        <td>{quizQuestions.type}</td>
-        <td>{quizQuestions.questionTitle}</td>
-        <td>{quizQuestions.question}</td>
-        <td>{quizQuestions.choices}</td>
-        <td>{quizQuestions.correctAnswer}</td>
-        <td>{quizQuestions.possibleAnswers}</td>
-        <td>{quizQuestions.points}</td>
-      </tr>))}
-  </tbody>
-</table>
+
  
  
 </div>
@@ -226,7 +212,8 @@ function MultipleChoice() {
         setChoices([...choices, ""]);
     };
  
- 
+    const { quizId } = useParams<{ quizId:any }>();
+
         // Cancel button that reset question and choices:
     const handleCancel = () => {
       const newChoices = [...choices];
@@ -320,11 +307,14 @@ function MultipleChoice() {
                    <button type="button" onClick={handleCancel} className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>
           Cancel
           </button>
- 
+          <Link to={`../Quizzes/${quizId}/Questions`}>
+
                 <button className="btn" style={{ backgroundColor: 'red', color: 'white' }} type="button"
                     onClick={createQuizQuestions}>
-                    Save/Update Question
+                      
+                    Update Question
                 </button>
+                </Link>
             </div>
         </div>
     );
@@ -588,12 +578,12 @@ function TrueFalse() {
        
           <span style={{ marginRight: '10px' }}></span>
   
-  
+          <Link to={`../Quizzes/${quizId}/Questions`}>
         <button className="btn" style={{ backgroundColor: 'red', color: 'white' }} type="button"
         onClick={createQuizQuestions}>
           Update Question
         </button>
-  
+  </Link>
         </div>
       </div>
   
@@ -689,14 +679,17 @@ function FillInTheBlank() {
   
         {/* Save/Update Question button */}
         <div>
+        <Link to={`../Quizzes/${quizId}/Questions`}>
+
           <button
             className="btn"
             style={{ backgroundColor: "red", color: "white" }}
             type="button"
             onClick={createQuizQuestions}
           >
-            Save/Update Question
+            Update Question
           </button>
+          </Link>
         </div>
       </div>
     );

@@ -76,46 +76,105 @@ function QuizPreview() {
     return (
         <div>
 
+<div style={{ marginTop: "20px" }} />
 
             <h1>{quiz.name}</h1>
           <div className="previewWarning">
           <p> <BsExclamationCircle/> This is a preview of the published version</p>
             </div>  
             <h1 style={{fontSize: "36pt", marginTop: "20px"}}>Quiz Instructions</h1>
-            <div className="container">
-                <h4>{quizQuestions.questionTitle}</h4>
-                    <p>{quizQuestions.question}</p>
-                    <p>Quiz question goes here</p>
-                    </div>
                     <table>
+                      
 <tbody>
+<div style={{ marginTop: "20px" }} />
+
     {quizzesQuestions.map((quizQuestions: any) => (
       <tr key={quizQuestions._id}>
-        <td>{quizQuestions.quizId}</td>
-        <td>{quizQuestions.type}</td>
-        <td>{quizQuestions.questionTitle}</td>
-        <td>{quizQuestions.question}</td>
-        <td>{quizQuestions.choices}</td>
-        <td>{quizQuestions.correctAnswer}</td>
-        <td>{quizQuestions.possibleAnswers}</td>
-        <td>{quizQuestions.points}</td>
+        <div className="entireQuestion">
+        <div  className="quizTitlePoints">
+        <td className="questionTitle"> <p>{quizQuestions.questionTitle}</p></td>
+        <td className="points"><p>{quizQuestions.points} pts</p></td>
+
+        </div>
+   
+        <td className="actualQuestion"><p>{quizQuestions.question}</p></td>
+        {quizQuestions.type === "trueFalse" && (
+  <div className="questionButtons">
+    <div>
+      <input
+        className="form-check-input"
+        type="radio"
+        id="true"
+        name="trueFalse"
+        value="true"
+      />
+      <label htmlFor="true" className="questionLabel">True</label>
+    </div>
+
+    <div>
+      <input
+        className="form-check-input"
+        type="radio"
+        id="false"
+        name="trueFalse"
+        value="false"
+      />
+      <label htmlFor="false" className="questionLabel">False</label>
+    </div>
+  </div>
+)}
+
+{quizQuestions.type === "fillInTheBlank" && (
+          <div className="form-group fillBlankTextArea">
+          <textarea
+            className="form-control"
+            rows={2}>
+
+            </textarea>
+            </div>
+)}
+
+
+{quizQuestions.type === "multipleChoice" && (
+  <div>
+    {quizQuestions.choices.map((choice : any, index : any) => (
+      <div key={index} className="form-group questionButtons">
+        <input
+          className="form-check-input"
+          type="radio"
+          id={`choice-${index}`}
+          name="choicesGroup"
+          value={choice}
+        />
+        <label className="questionLabel">{choice}</label>
+      </div>
+    ))}
+  </div>
+)}
+
+
+
+
+        {/* <td>{quizQuestions.possibleAnswers}</td> */}
+        </div>
       </tr>))}
+
+   
   </tbody>
 </table>
 
-                    <div style={{ marginTop: "100px" }} />
 
 
  
 
 
-            <div style={{ marginTop: "50px" }} />
+            <div style={{ marginTop: "10px" }} />
 
 
             <div className="submitQuiz">
           <button className="btn btn-danger individual-button-question"> Submit Quiz</button>
             </div>  
-            <div style={{ marginTop: "100px" }} />
+            <div style={{ marginTop: "60px" }} />
 
 
             <div className="keepEditing">
@@ -124,6 +183,7 @@ function QuizPreview() {
           </Link>
             </div>  
 
+            <div style={{ marginTop: "30px" }} />
 
         </div>
     )

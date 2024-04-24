@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { QuizQuestions } from "../QuizQuestions/client";
+import { QuizQuestions } from "../QuizQuestions/questionsclient";
 
 import {
   BsFillCheckCircleFill, BsPencil,
