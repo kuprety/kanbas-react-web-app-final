@@ -24,20 +24,6 @@ function QuizPreview() {
         }
     };
 
-    const [quizzesQuestions, setQuizzesQuestions] = useState<QuizQuestions[]>([]);
-    const [quizQuestions, setQuizQuestions] = useState<QuizQuestions>({
-        _id: "",
-        quizId: "",
-        type: "multipleChoice",
-        questionTitle: "",
-        question: "", // Initialize as a string literal
-        choices: [],
-        correctAnswer: "",
-        possibleAnswers: [],
-        points: 0,
-    });
-
-
     const { quizId } = useParams<{ quizId:any }>();
     const { courseId } = useParams<{ courseId:any }>();
 
@@ -54,6 +40,21 @@ function QuizPreview() {
                 const fetchedQuiz = await client.findQuizById(quizId);
                 setQuiz(fetchedQuiz);
         };
+
+
+    const [quizzesQuestions, setQuizzesQuestions] = useState<QuizQuestions[]>([]);
+    const [quizQuestions, setQuizQuestions] = useState<QuizQuestions>({
+        _id: "",
+        quizId: "",
+        type: "multipleChoice",
+        questionTitle: "",
+        question: "", // Initialize as a string literal
+        choices: [],
+        correctAnswer: "",
+        possibleAnswers: [],
+        points: 0,
+    });
+
 
         
     useEffect(() => { fetchQuiz(); }, [quizId]);

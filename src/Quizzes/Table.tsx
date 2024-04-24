@@ -138,75 +138,27 @@ const [currentQuizQ, setCurrentQuizQ] = useState<Quiz>(quiz || null);
 
   return (
     <div>
-      <h1>Quiz Table</h1>
+          <div style={{ marginTop: "30px" }}></div>
+
       <table className="table">
-        <thead>
-          <tr>
-            <td>
-            <tr> Quiz Name </tr>
-            <div className="row">
-  <div className="col">
-    <input 
-      value={quiz.name} 
-      className="form-control mx-100" 
-      style={{ width: '200px' }} 
-      onChange={(e) => setQuiz({ ...quiz, name: e.target.value })}
-    />
-  </div>
-  <td>
-  <tr> Description </tr>
 
-  <div className="col">
-    <input 
-      value={quiz.description} 
-      className="form-control mx-100" 
-      style={{ width: '200px' }} 
-      onChange={(e) => setQuiz({ ...quiz, description: e.target.value })}
-    />
-    
-  </div>
-  </td>
-</div>
 
-            </td>
-            <td>
-            <tr> Points </tr>
-              <input value={quiz.points} className="form-control" style={{ width: '200px'}} onChange={(e) =>
-                setQuiz({ ...quiz, points: parseFloat(e.target.value) })}/>
-            </td>
-            <td>
-            <tr> Due Date </tr>
-              <input value={quiz.dueDate instanceof Date ? quiz.dueDate.toISOString().split('T')[0] : quiz.dueDate} className="form-control" style={{ width: '200px'}} onChange={(e) =>
-                setQuiz({ ...quiz, dueDate: new Date(e.target.value) })}/>
-            </td>
-            <td>
-            <tr> Assignment Group </tr>
 
-              <select value={quiz.assignmentGroup} className="form-select" style={{ width: '200px', marginTop: "10px" }} onChange={(e) =>
-                setQuiz({ ...quiz, assignmentGroup: e.target.value })}>
-                <option value="QUIZZES">Quizzes</option>
-                <option value="EXAMS">Exams</option>
-                <option value="ASSIGNMENTS">Assignments</option>
-                <option value="PROJECT">Project</option>
-              </select>
-            </td>
             <td>
-            <BsFillCheckCircleFill
-      onClick={updateQuiz}
-      className="me-2 text-success fs-1 text"
-    />
 
-<button onClick={createQuiz}>
-  <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${currentQuiz}Quiz/Editor`}>
-    <BsPlusCircleFill className="text-success fs-1 text" /></Link>
+            <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${currentQuiz}Details/Editor`}>
+
+<button className="btn btn-danger" onClick={createQuiz }>
+    <BsPlusCircleFill className="" /> Add Quiz
 </button>
+</Link>
+<div style={{ marginTop: "20px" }}></div>
 
 
                 </td>
             <th>&nbsp;</th>
-          </tr>
-        </thead>
-        <h1> TABLE:</h1>
+
+
         {'  '}
         <tbody>
           

@@ -70,6 +70,7 @@ function Courses({ courses }: { courses: any[]; }) {
                         <Route path="Quizzes/:quizId/Details/Editor" element={<QuizDetailsEditor />} />
                         <Route path="Quizzes/:quizId/Preview" element={<QuizPreview />} />
 
+                        
                         <Route path="Quizzes/:quizId/Questions" element={<Questions />} />
                         {/* <Route path="Quizzes/:quizId//Questions/Editor" element={<Editor />} /> */}
                         <Route path="Quizzes/:quizId/Questions/QuestionEditor" element={<Util />} />
