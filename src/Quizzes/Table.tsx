@@ -68,10 +68,7 @@ export default function QuizTable() {
 //         console.log(err);
 //       }
 //     };
-
-
-
-    
+  
     
 //   //   const fetchQuiz = async (quiz:any) => {
 //   //   const quizzes = await client.findQuizById(quiz._id);
