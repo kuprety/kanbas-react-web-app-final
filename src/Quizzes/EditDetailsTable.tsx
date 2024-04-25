@@ -13,9 +13,6 @@ import PointsComponent from "./Questions/PointsComponent";
 // import QuizQuestionsTable from "../QuizQuestions/Table";
 
 
-
-
-
 export default function DetailsTable() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [quiz, setQuiz] = useState<Quiz>({
@@ -63,7 +60,7 @@ export default function DetailsTable() {
     } catch (err) {
       console.log(err);
     }
-  };
+  }
 
   const fetchQuizzes = async () => {
     const quizzes = await client.findAllQuizzes();
