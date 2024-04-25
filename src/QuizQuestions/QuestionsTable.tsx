@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // import { QuizQuestions } from "../../../../QuizQuestions/client";
 import { QuizQuestions } from "./questionsclient";
 
-import * as client from "../Quizzes/client";
+import * as client from "./client";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { Quiz } from "./client";
 import {

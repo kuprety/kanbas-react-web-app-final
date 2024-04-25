@@ -70,7 +70,14 @@ export default function QuizTable() {
     };
 
 
-
+    const createQuiz2 = async () => {
+      try {
+        const newQuiz = await client.createQuiz(quiz);
+        setQuiz(newQuiz);
+      } catch (err) {
+        console.log(err);
+      }
+    };
     
     
   //   const fetchQuiz = async (quiz:any) => {
@@ -138,22 +145,23 @@ const [currentQuizQ, setCurrentQuizQ] = useState<Quiz>(quiz || null);
 
   useEffect(() => { fetchQuizzes()}, []);
 
+  const [quizEmpt, setQuizEmpt] = useState<Quiz>({
+    _id: "", published: false, name:"Default", course: "", title: "",
+    description: "", quizType: "", points: 0, assignmentGroup: "Quizzes", shuffleAnswers: true,
+    timeLimit: 20, multipleAttempts: false, showCorrectAnswers: false, accessCode: "", oneQuestionAtATime: true,
+    webcamRequired: false, lockQuestionsAfterAnswering: false, dueDate: new Date("2024-06-20"), availableDate: new Date(), untilDate: new Date("2024-06-20") });
+
+
   return (
     <div>
           <div style={{ marginTop: "30px" }}></div>
-
       <table className="table">
-
-
-
             <td>
 
-            <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${"NewQuiz"}/Details/Editor`}>
-
-            <button className="btn btn-danger" onClick={createQuiz }>
+   <button className="btn btn-danger" onClick={createQuiz2 }>
     <BsPlusCircleFill className="" /> Add Quiz
+    <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${currentQuiz}/Details/Editor`}>A</Link>
 </button>
-</Link>
 
 
 <div style={{ marginTop: "20px" }}></div>
@@ -239,7 +247,7 @@ const [currentQuizQ, setCurrentQuizQ] = useState<Quiz>(quiz || null);
                         {currentQuiz && 
                         <MenuItem 
                         onClick={() => {
-                          setCurrentQuiz(currentQuiz);}}>
+                          createQuiz();}}>
                           <Link
                             to={`/Kanbas/Courses/${courseId}/Quizzes/${currentQuiz}`}>Edit Screen</Link>
                         </MenuItem>}
