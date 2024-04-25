@@ -163,7 +163,9 @@ const [currentQuizQ, setCurrentQuizQ] = useState<Quiz>(quiz || null);
 
         {'  '}
         <tbody>
-          
+        <h1>Assignment Quizzes</h1>
+        <div style={{ marginTop: "15px" }}></div>
+
           {quizzes.map((quiz: any) => (
             <tr key={quiz._id}>
 
@@ -196,17 +198,10 @@ const [currentQuizQ, setCurrentQuizQ] = useState<Quiz>(quiz || null);
               <td>
                 
 
-              <button onClick= {() => handlePublishToggle(quiz)}>{quiz.published ? <BsCheckCircleFill/> : <BsXCircleFill/>}</button>
+              <button className="btn btn-light individual-buttons-saving" onClick= {() => handlePublishToggle(quiz)}>{quiz.published ? <BsCheckCircleFill/> : <BsXCircleFill/>}</button>
 
               {' '}
-                <button onClick={() => deleteQuiz(quiz)} className="btn btn-danger">
-                  <BsTrash3Fill />
-                </button>
-                <button className="btn btn-warning me-2" style={{marginLeft: "10px"}}>
-                <BsPencil onClick={() => selectQuiz(quiz)} />
-
-                
-                </button>
+   
                     <Button
                       aria-controls="simple-menu"
                       aria-haspopup="true"
