@@ -163,6 +163,7 @@ const [currentQuizQ, setCurrentQuizQ] = useState<Quiz>(quiz || null);
             <th>&nbsp;</th>
 
 
+
         {'  '}
         <tbody>
         <h1>Assignment Quizzes</h1>
@@ -193,6 +194,8 @@ const [currentQuizQ, setCurrentQuizQ] = useState<Quiz>(quiz || null);
               
               {quiz.dueDate && <p>Due: {quiz.dueDate ? new Date(quiz.dueDate).toLocaleDateString() : "N/A"}</p>}
               {quiz.points && <p>Points: {quiz.points}</p>}
+
+
               
               
               </td>
@@ -201,6 +204,8 @@ const [currentQuizQ, setCurrentQuizQ] = useState<Quiz>(quiz || null);
                 
 
               <button className="btn btn-light individual-buttons-saving" onClick= {() => handlePublishToggle(quiz)}>{quiz.published ? <BsCheckCircleFill/> : <BsXCircleFill/>}</button>
+
+
 
               {' '}
    
