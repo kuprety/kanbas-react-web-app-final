@@ -16,7 +16,7 @@ import { FaPlus, FaSearch } from "react-icons/fa";
 export default function QuestionsTable() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [quiz, setQuiz] = useState<Quiz>({
-    _id: "", name: "", course: "", title: "",
+    _id: "", published:false, name: "", course: "", title: "",
     description: "", quizType: "", points: 0, assignmentGroup: "Quizzes", shuffleAnswers: true,
     timeLimit: 20, multipleAttempts: false, showCorrectAnswers: false, accessCode: "", oneQuestionAtATime: true,
     webcamRequired: false, lockQuestionsAfterAnswering: false, dueDate: new Date("2024-06-20"), availableDate: new Date(), untilDate: new Date("2024-06-20")

@@ -9,10 +9,12 @@ import {
 import * as client from "./client";
 import { Quiz } from "./client";
 import { Link, useLocation, useParams } from "react-router-dom";
+
+
 export default function DetailsTable() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [quiz, setQuiz] = useState<Quiz>({
-    _id: "", name: "", course: "", title: "",
+    _id: "", published: false, name: "", course: "", title: "",
     description: "", quizType: "", points: 0, assignmentGroup: "Quizzes", shuffleAnswers: true,
     timeLimit: 20, multipleAttempts: false, showCorrectAnswers: false, accessCode: "", oneQuestionAtATime: true,
     webcamRequired: false, lockQuestionsAfterAnswering: false, dueDate: new Date("2024-06-20"), availableDate: new Date(), untilDate: new Date("2024-06-20")
