@@ -6,7 +6,9 @@ import {
 import * as client from "./client";
 import { QuizQuestions } from "./client";
 import { Link, useLocation } from "react-router-dom";
- 
+import PointsComponent from "../Quizzes/Questions/PointsComponent";
+
+
  
 export default function QuizQuestionsTable() {
   const [quizzesQuestions, setQuizzesQuestions] = useState<QuizQuestions[]>([]);
@@ -23,7 +25,20 @@ export default function QuizQuestionsTable() {
     });
  
  
-    const { pathname } = useLocation();
+    const [totalPoints, setTotalPoints] = useState(0);
+    
+    
+    const calculateTotalPoints = () => {
+      let totalPoints = 0;
+      quizzesQuestions.forEach((question) => {
+        totalPoints += question.points;
+      });
+      setTotalPoints(totalPoints);
+      console.log(totalPoints);
+    };
+
+    
+  const { pathname } = useLocation();
  
   
   const createQuizQuestions = async () => {
@@ -81,8 +96,13 @@ export default function QuizQuestionsTable() {
   };
  
  
-  useEffect(() => { fetchQuizzesQuestions(); }, []);
- 
+
+  useEffect(() => {
+    fetchQuizzesQuestions();
+    calculateTotalPoints();
+  }, [quizzesQuestions]);
+
+
  
   const [selectedType, setSelectedType] = useState("");
  
@@ -179,12 +199,14 @@ onChange={(e) => {
       </tr>))}
   </tbody>
 </table>
+
+
+        {/* Total Points */}
+        <p>Total Points: {totalPoints}</p>
  
  
 </div>
     );
- 
- 
  
  
  
@@ -329,174 +351,6 @@ function MultipleChoice() {
         </div>
     );
 }
- 
- 
- 
- 
-// function MultipleChoice() {
-//     // State for choices
-//     const [choices, setChoices] = useState(quizQuestions.choices || [""]);
-//     const [questionTitle, setQuestionTitle] = useState('');
- 
-//     // Change the type of questionInputRef to be a reference to HTMLTextAreaElement
-//     const questionInputRef = useRef<HTMLTextAreaElement>(null);
- 
- 
- 
-//     // // Handler for updating the question text
-//     // const handleQuestionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-//     //     setQuizQuestions({ ...quizQuestions, question: event.target.value });
-//     // };
- 
-//     const handleQuestionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-//         const { value } = event.target;
-//         setQuizQuestions((prevQuestions) => ({
-//           ...prevQuestions,
-//           question: value,
-//         }));
-      
-//         // Set the cursor position after state update
-//         event.target.selectionStart = event.target.selectionEnd = value.length;
-//       };
-      
- 
- 
-//     // Handler for updating a specific choice
-//     const handleChoiceChange = (index: number, event: React.ChangeEvent<HTMLTextAreaElement>) => {
-//         const newChoices = [...choices];
-//         newChoices[index] = event.target.value;
-//         setChoices(newChoices);
-//         setQuizQuestions((prev) => ({
-//             ...prev,
-//             choices: newChoices,
-//         }));
-//     };
- 
-//     // Handler for updating the correct answer
-//     const handleCorrectAnswerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//         setQuizQuestions({ ...quizQuestions, correctAnswer: event.target.value });
-//     };
- 
-//     // Handler for adding a new choice
-//     const addChoice = () => {
-//         setChoices([...choices, ""]);
-//     };
- 
- 
-    
- 
-//     // Handler for removing a choice
-//     const removeChoice = (index: number) => {
-//         const newChoices = [...choices];
-//         newChoices.splice(index, 1);
-//         setChoices(newChoices);
-//         setQuizQuestions((prev) => ({
-//             ...prev,
-//             choices: newChoices,
-//         }));
-//     };
- 
-    
- 
- 
-//     useEffect(() => {
-//         if (questionInputRef.current) {
-//             questionInputRef.current.focus();
-//         }
-//     }, [quizQuestions.question]);
- 
- 
- 
-//     return (
-//         <div>
-//             <br />
-//             <h6>Enter your question text and multiple answers, then select one answer to be correct.</h6>
-//             <br />
- 
-//             {/* Question input */}
-//             <h5>Question:</h5>
-//             <textarea
-//                 ref={questionInputRef}
-//                 className="form-control"
-//                 placeholder="Enter Question Here"
-//                 rows={5}
-//                 value={quizQuestions.question}
-//                 onChange={handleQuestionChange}
-//             ></textarea>
- 
- 
-//             <br></br>
- 
-//             {/* Choices */}
-//             <h5>Choices:</h5>
-//             {choices.map((choice, index) => (
-//                 <div key={index} className="form-group">
-//                     {/* Radio button */}
-//                     <input
-//                         className="form-check-input"
-//                         type="radio"
-//                         id={`choice-${index}`}
-//                         name="choicesGroup"
-//                         value={choice}
-//                         checked={quizQuestions.correctAnswer === choice}
-//                         onChange={handleCorrectAnswerChange}
-//                     />
- 
-//                     {/* Choice input */}
-//                     <textarea
-//                         className="form-control"
-//                         placeholder={`Enter Choice ${index + 1}`}
-//                         rows={2}
-//                         value={choice}
-//                         onChange={(event) => handleChoiceChange(index, event)}
-//                     ></textarea>
- 
-//                     {/* Remove button */}
-//                     <button className="btn btn-primary" type="button" onClick={() => removeChoice(index)}>
-//                         Remove
-//                     </button>
-//                 </div>
-//             ))}
- 
-//             {/* Add choice button */}
-//             <button className="btn btn-primary" type="button" onClick={addChoice}>
-//                 Add Choice
-//             </button>
- 
-//             <br></br>
-//             <br></br>
- 
-//             {/* Save/Update Question button */}
-//             <div>
-//                 {/* <button type="button" onClick={handleCancel} className="btn btn-light individual-buttons-saving" style={{ width: "auto" }}>
-//                     Cancel
-//                 </button> */}
-//                 <button className="btn" style={{ backgroundColor: 'red', color: 'white' }} type="button"
-//                     onClick={createQuizQuestions}>
-//                     Save/Update Question
-//                 </button>
-//             </div>
-//         </div>
-//     );
-// }
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
  
  
 //True and False Screen:
@@ -704,8 +558,10 @@ function FillInTheBlank() {
  
  
  
- 
+
  
  
 }
+
+
  

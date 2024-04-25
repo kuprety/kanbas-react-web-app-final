@@ -9,6 +9,13 @@ import {
 import * as client from "./client";
 import { Quiz } from "./client";
 import { Link, useLocation, useParams } from "react-router-dom";
+import PointsComponent from "./Questions/PointsComponent";
+// import QuizQuestionsTable from "../QuizQuestions/Table";
+
+
+
+
+
 export default function DetailsTable() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [quiz, setQuiz] = useState<Quiz>({
@@ -22,6 +29,7 @@ export default function DetailsTable() {
   const { CourseName } = useParams();
   const { pathname } = useLocation();
   const [timeLimitChecked, setTimeLimitChecked] = useState(false);
+  
 
   const handleTimeLimitChange = () => {
 
@@ -79,12 +87,24 @@ export default function DetailsTable() {
 
     setTimeLimitChecked(true);
   }, []);
-    
+
+
+  const [totalPoints, setTotalPoints] = useState<number>(0);
+
+  //const [totalPoints, setTotalPoints] = useState();
+
+
   return (
     <div>
       <div style={{ marginTop: "15px" }} />
 
-      <p className="points">Points 0</p>
+    {/* Total Points */}
+      <PointsComponent totalPoints={totalPoints} />
+
+    {/* <p>totalPoints={totalPoints}</p> */}
+      
+
+
 
       <nav className="nav nav-tabs mt-2">
         <div className={`nav-link ${pathname.includes("Details/Editor") ? "active" : ""}`}>

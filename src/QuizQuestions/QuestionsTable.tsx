@@ -10,6 +10,7 @@ import { Quiz } from "../Quizzes/client";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import QuizQuestionsTable from "./Table";
+import PointsComponent from "../Quizzes/Questions/PointsComponent";
 
 
 
@@ -21,7 +22,6 @@ export default function QuestionsTable() {
     timeLimit: 20, multipleAttempts: false, showCorrectAnswers: false, accessCode: "", oneQuestionAtATime: true,
     webcamRequired: false, lockQuestionsAfterAnswering: false, dueDate: new Date("2024-06-20"), availableDate: new Date(), untilDate: new Date("2024-06-20")
   });
-
 
 
   const { CourseName } = useParams();
@@ -48,6 +48,8 @@ const handleClick = () => {     setShowComponent(true);   };
 
 
 
+
+
   const createQuiz = async () => {
     try {
       const newQuiz = await client.createQuiz(quiz);
@@ -56,6 +58,8 @@ const handleClick = () => {     setShowComponent(true);   };
       console.log(err);
     }
   };
+
+
 
 
 
