@@ -92,6 +92,8 @@ export default function QuizTable() {
     }
   };
 
+  const { quizId } = useParams();
+
 //new
 const { courseId } = useParams();
 
@@ -147,13 +149,12 @@ const [currentQuizQ, setCurrentQuizQ] = useState<Quiz>(quiz || null);
             <td>
 
 
-<button className="btn btn-danger" onClick={createQuiz }>
-<Link to={`/Kanbas/Courses/${courseId}/Quizzes/${currentQuiz}Details/Editor`}>
-
+            <button className="btn btn-danger">
+  <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${"NewQuiz"}/Details/Editor`}>
     <BsPlusCircleFill className="" /> Add Quiz
-    </Link>
-
+  </Link>
 </button>
+
 <div style={{ marginTop: "20px" }}></div>
 
 
