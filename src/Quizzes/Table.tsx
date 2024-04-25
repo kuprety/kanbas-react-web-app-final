@@ -154,7 +154,7 @@ const [currentQuizQ, setCurrentQuizQ] = useState<Quiz>(quiz || null);
       style={{ width: '200px' }} 
       onChange={(e) => setQuiz({ ...quiz, name: e.target.value })}
     />
-  </div>
+  </div> 
   <td>
   <tr> Description </tr>
 
@@ -202,7 +202,6 @@ const [currentQuizQ, setCurrentQuizQ] = useState<Quiz>(quiz || null);
   <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${currentQuiz}Quiz/Editor`}>
     <BsPlusCircleFill className="text-success fs-1 text" /></Link>
 </button>
-
 
                 </td>
             <th>&nbsp;</th>
