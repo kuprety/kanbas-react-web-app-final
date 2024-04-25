@@ -14,7 +14,7 @@ import TrueFalse from "./Table"
 import FillInTheBlank from "./Table"
 import { FaPlus, FaSearch } from "react-icons/fa";
   
-
+// import calculateTotalPoints from "./Table"
 
   export default function QuestionsTable() {
 
@@ -112,7 +112,17 @@ const updateQuiz = async () => {
 
     const { pathname } = useLocation();
 
+    const [totalPoints, setTotalPoints] = useState(0);
 
+    const calculateTotalPoints = () => {
+      let totalPoints = 0;
+      quizzesQuestions.forEach((question) => {
+        totalPoints += question.points;
+      });
+      console.log(totalPoints); 
+      return totalPoints;
+    };
+    
 
     const handleClick = () => {     setShowComponent(true);   };
 
@@ -123,7 +133,7 @@ const updateQuiz = async () => {
 <div style={{ marginTop: "15px" }} />
 
 
-<p className="points">Points 0</p>
+<p className="points">Points: {calculateTotalPoints()}</p>
 
 
 <nav className="nav nav-tabs mt-2">

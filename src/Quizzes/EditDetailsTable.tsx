@@ -71,20 +71,55 @@ export default function DetailsTable() {
     }
   };
 
-  const { quizId } = useParams();
+  const { quizId } = useParams<{ quizId:any }>();
+  const fetchQuiz = async () => {
+    console.log("hello " + quizId);
+        //const id = quizId ?? ""; // Use an empty string if quizId is undefined
+        const fetchedQuiz = await client.findQuizById(quizId);
+        setQuiz(fetchedQuiz);
+};
 
+
+const [quizzesQuestions, setQuizzesQuestions] = useState<QuizQuestions[]>([]);
+const [quizQuestions, setQuizQuestions] = useState<QuizQuestions>({
+    _id: "",
+    quizId: "",
+    type: "multipleChoice",
+    questionTitle: "",
+    question: "", // Initialize as a string literal
+    choices: [],
+    correctAnswer: "",
+    possibleAnswers: [],
+    points: 0,
+});
+
+
+const fetchQuizzesQuestions = async () => {
+  const quizzessQuestions = await client.findAllQuizzesQuestions();
+  setQuizzesQuestions(quizzessQuestions);
+};
+
+   const calculateTotalPoints = () => {
+      let totalPoints = 0;
+      quizzesQuestions.forEach((question) => {
+        totalPoints += question.points;
+      });
+      console.log(totalPoints); 
+      return totalPoints;
+    };
 
   useEffect(() => {
-    fetchQuizzes();
+    fetchQuiz();
 
     setTimeLimitChecked(true);
   }, []);
-    
+  useEffect(() => { fetchQuizzesQuestions(); }, []);
+
   return (
     <div>
       <div style={{ marginTop: "15px" }} />
 
-      <p className="points">Points 0</p>
+      <p className="points">Points: {calculateTotalPoints()}</p>
 
       <nav className="nav nav-tabs mt-2">
         <div className={`nav-link ${pathname.includes("Details/Editor") ? "active" : ""}`}>

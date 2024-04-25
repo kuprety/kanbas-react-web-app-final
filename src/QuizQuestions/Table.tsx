@@ -82,8 +82,10 @@ export default function QuizQuestionsTable() {
   };
  
  
-  useEffect(() => { fetchQuizzesQuestions(); }, []);
- 
+  useEffect(() => {
+    fetchQuizzesQuestions();
+    calculateTotalPoints();
+  }, [quizzesQuestions]); 
  
   const [selectedType, setSelectedType] = useState("");
  
@@ -95,6 +97,16 @@ export default function QuizQuestionsTable() {
         setQuizQuestions({ ...quizQuestions, type: selectedType });
       }
  
+    const [totalPoints, setTotalPoints] = useState(0);
+
+      const calculateTotalPoints = () => {
+        let totalPoints = 0;
+        quizzesQuestions.forEach((question) => {
+          totalPoints += question.points;
+        });
+        setTotalPoints(totalPoints);
+        console.log(totalPoints);
+      };
  
   return (
  

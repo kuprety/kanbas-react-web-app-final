@@ -178,7 +178,7 @@ function QuizPreview() {
 
 
             <div className="keepEditing">
-            <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}/Questions/QuestionEditor`}>
+            <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}/Questions`}>
           <p> <BsPencil/> Keep Editing This Quiz</p>
           </Link>
             </div>  

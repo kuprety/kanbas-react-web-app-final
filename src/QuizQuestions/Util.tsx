@@ -10,6 +10,7 @@ import { Quiz } from "../Quizzes/client";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import QuizQuestionsTable from "./Table";
+import { QuizQuestions } from "./questionsclient";
 
 
 
@@ -23,7 +24,7 @@ export default function QuestionsTable() {
   });
 
 
-  const { quizId } = useParams();
+  const { quizId } = useParams<{ quizId:any }>();
 
   const { CourseName } = useParams();
   const { pathname } = useLocation();
@@ -56,7 +57,45 @@ const handleClick = () => {     setShowComponent(true);   };
     }
   };
 
+  const [quizzesQuestions, setQuizzesQuestions] = useState<QuizQuestions[]>([]);
+  const [quizQuestions, setQuizQuestions] = useState<QuizQuestions>({
+      _id: "",
+      quizId: "",
+      type: "multipleChoice",
+      questionTitle: "",
+      question: "", // Initialize as a string literal
+      choices: [],
+      correctAnswer: "",
+      possibleAnswers: [],
+      points: 0,
+  });
 
+  const calculateTotalPoints = () => {
+    let totalPoints = 0;
+    quizzesQuestions.forEach((question) => {
+      totalPoints += question.points;
+    });
+    console.log(totalPoints); 
+    return totalPoints;
+  };
+  
+
+
+  const fetchQuizzesQuestions = async () => {
+    const quizzessQuestions = await client.findAllQuizzesQuestions();
+    setQuizzesQuestions(quizzessQuestions);
+  };
+      
+  const fetchQuiz = async () => {
+    console.log("hello " + quizId);
+        //const id = quizId ?? ""; // Use an empty string if quizId is undefined
+        const fetchedQuiz = await client.findQuizById(quizId);
+        setQuiz(fetchedQuiz);
+};
+      
+  useEffect(() => { fetchQuiz(); }, [quizId]);
+
+  useEffect(() => { fetchQuizzesQuestions(); }, []);
 
   useEffect(() => {
 
@@ -67,7 +106,7 @@ const handleClick = () => {     setShowComponent(true);   };
     <div>
         <div style={{ marginTop: "15px" }} />
 
-<p className="points">Points 0</p>
+    <p className="points">Points: {calculateTotalPoints()}</p>
 
 <nav className="nav nav-tabs mt-2">
 <Link to={`../Quizzes/${quizId}/Details/Editor`} className={`nav-link ${pathname.includes("Details/Editor") ? "active" : ""}`}>
