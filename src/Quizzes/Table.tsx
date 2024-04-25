@@ -148,12 +148,13 @@ const [currentQuizQ, setCurrentQuizQ] = useState<Quiz>(quiz || null);
 
             <td>
 
+            <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${"NewQuiz"}/Details/Editor`}>
 
-            <button className="btn btn-danger">
-  <Link to={`/Kanbas/Courses/${courseId}/Quizzes/${"NewQuiz"}/Details/Editor`}>
+            <button className="btn btn-danger" onClick={createQuiz }>
     <BsPlusCircleFill className="" /> Add Quiz
-  </Link>
 </button>
+</Link>
+
 
 <div style={{ marginTop: "20px" }}></div>
 
