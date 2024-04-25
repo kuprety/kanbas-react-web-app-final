@@ -7,6 +7,7 @@ import { Quiz } from "./client";
 import { Link, useParams } from "react-router-dom";
 
 import './index.css';
+import { QuizQuestions } from "../Preview/questionsclient";
 
 function QuizDetails() {
 
@@ -20,6 +21,7 @@ function QuizDetails() {
         }
     };
 
+    const [quizzesQuestions, setQuizzesQuestions] = useState<QuizQuestions[]>([]);
 
     const { quizId } = useParams<{ quizId:any }>();
     const { courseId } = useParams<{ courseId:any }>();
@@ -37,10 +39,23 @@ function QuizDetails() {
                 const fetchedQuiz = await client.findQuizById(quizId);
                 setQuiz(fetchedQuiz);
         };
-
+        const fetchQuizzesQuestions = async () => {
+            const quizzessQuestions = await client.findAllQuizzesQuestions();
+            setQuizzesQuestions(quizzessQuestions);
+          };
         
-    useEffect(() => { fetchQuiz(); }, [quizId]);
+          const calculateTotalPoints = () => {
+            let totalPoints = 0;
+            quizzesQuestions.forEach((question) => {
+              totalPoints += question.points;
+            });
+            console.log(totalPoints); 
+            return totalPoints;
+          };
+          
+        useEffect(() => { fetchQuiz(); }, [quizId]);
 
+        useEffect(() => { fetchQuizzesQuestions(); }, []);
 
 
     // const handlePublishQuiz = async (quizId:number) => {
@@ -53,13 +68,18 @@ function QuizDetails() {
 
     return (
         <div>
+<div style={{ marginTop: "20px" }} />
 
-            <button onClick= {() => handlePublishToggle()}>{quiz.published ? "Unpublish" : "Publish"}</button>
-            <button > <Link
+            <button className="btn btn-light individual-buttons-saving" onClick= {() => handlePublishToggle()}>{quiz.published ? "Unpublish" : "Publish"}</button>
+            <button className="btn btn-light individual-buttons-saving" > <Link
                             to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}/Details/Editor`}>Quiz Editor</Link></button>
-            <button> Preview </button>
+            <button className="btn btn-light individual-buttons-saving"> <Link
+                            to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}/Preview`}>Preview</Link></button>
 
-            
+
+
+<div style={{ marginTop: "10px" }} />
+
             <h1>Quiz Details:</h1>
         
         <div className="container details-container">
@@ -67,7 +87,7 @@ function QuizDetails() {
                     <p>ID: {quiz._id}</p>
                     
                     <p>Quiz Type: {quiz.quizType}</p>
-                    <p>Points: {quiz.points}</p>
+                    <p>Points: {calculateTotalPoints()}</p>
                     <p>Assignment Group: {quiz.assignmentGroup}</p>
                     <p>Shuffle Answers: {quiz.shuffleAnswers ? "Yes" : "No"}</p>
                     <p>Time Limit: {quiz.timeLimit} minutes</p>
@@ -77,9 +97,9 @@ function QuizDetails() {
                     <p>One Question at a Time: {quiz.oneQuestionAtATime ? "Yes" : "No"}</p>
                     <p>Webcam Required: {quiz.webcamRequired ? "Yes" : "No"}</p>
                     <p>Lock Questions After Answering: {quiz.lockQuestionsAfterAnswering ? "Yes" : "No"}</p>
-                    <p>Due Date: {quiz.dueDate ? new Date(quiz.dueDate).toLocaleDateString() : "N/A"}</p>
-                    <p>Available Date: {quiz.availableDate ? new Date(quiz.availableDate).toLocaleDateString() : "N/A"}</p>
-                    <p>Until Date: {quiz.untilDate ? new Date(quiz.untilDate).toLocaleDateString() : "N/A"}</p>
+                    <p>Due Date: {quiz.dueDate ? new Date(quiz.dueDate).toLocaleDateString() : "6/20/2024"}</p>
+                    <p>Available Date: {quiz.availableDate ? new Date(quiz.availableDate).toLocaleDateString() : "4/25/2024"}</p>
+                    <p>Until Date: {quiz.untilDate ? new Date(quiz.untilDate).toLocaleDateString() : "6/20/2024"}</p>
                     </div>
         
             

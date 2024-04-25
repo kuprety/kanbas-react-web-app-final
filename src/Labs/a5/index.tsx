@@ -1,6 +1,6 @@
 import React from "react";
 import EncodingParametersInURLs from "./EncodingParametersInURLs";
-import WorkingWithArrays from "../a3/JavaScript/arrays/WorkingWithArrays";
+import WorkingWithArrays from "./WorkingWithArrays";
 import WorkingWithObjects from "./WorkingWithObjects";
 
 function Assignment5() {
@@ -11,8 +11,9 @@ function Assignment5() {
           Welcome
         </a>
         <EncodingParametersInURLs/>
-        <WorkingWithArrays/>
         <WorkingWithObjects/>
+        <WorkingWithArrays/>
+
       </div>
     );
   }
